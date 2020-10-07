@@ -1,0 +1,9 @@
+<mat-form-field appearance="fill">
+    <mat-select [formControl]="panelColor"
+                panelClass="example-panel-{{panelColor.value}}">
+        <mat-option *ngFor="let element of elementList"
+            (click)="optionSelected(element)"
+            value="{{ element.name }}">{{ element.name }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

@@ -1,0 +1,55 @@
+.mainContainer {
+    display: flex;
+    justify-content: space-between;
+    height: 70px;
+}
+
+.menuButton {
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.logo {
+    align-self: center;
+}
+
+.buttonContainer {
+    margin-right: 20px;
+}
+
+.icon {
+    line-height: 70px;
+    vertical-align: middle;
+}
+
+.button {
+    font-size: 24px;
+    line-height: 70px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.text {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.buttonFirst {
+    color: #41A420;
+}
+
+.buttonFirst:active {
+    background-color: rgba(65, 164, 32, 0.2);
+}
+
+.buttonSecond {
+    color: #E3242B;
+}
+
+.buttonSecond:active {
+    background-color: rgba(227, 36, 43, 0.2);;
+}

@@ -43,7 +43,19 @@ export class PagesComponent implements OnInit {
         category: "Cool category"
       });
       console.log(this.cards);
-    }  
+    }
+    this.cards.push({
+      newProduct: true,
+      productID: "",
+      producerID: "",
+      orderID: "124234",
+      imageURL: "https://c4.wallpaperflare.com/wallpaper/391/313/294/nier-automata-2b-nier-fireworks-wallpaper-preview.jpg",
+      title: "This is the tittle",
+      rating: 3.1,
+      ETA: "15:00",
+      description: "This is de description",
+      category: "Cool category"
+    });
   }
 
 }

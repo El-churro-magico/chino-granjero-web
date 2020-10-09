@@ -16,6 +16,8 @@ import { RegisterComponent } from './register/register.component';
 import { SelectorComponent } from './selector/selector.component';
 import { ScoreComponent } from './score/score.component';
 import { HeaderComponent } from './header/header.component';
+import { MainCardComponent } from './main-card/main-card.component';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { HeaderComponent } from './header/header.component';
     RegisterComponent,
     SelectorComponent,
     ScoreComponent,
-    HeaderComponent
+    HeaderComponent,
+    MainCardComponent,
+    CardComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +57,9 @@ import { HeaderComponent } from './header/header.component';
     LoginComponent,
     RegisterComponent,
     ScoreComponent,
-    HeaderComponent
+    HeaderComponent,
+    MainCardComponent,
+    CardComponent
   ]
 })
 export class SharedModule { }

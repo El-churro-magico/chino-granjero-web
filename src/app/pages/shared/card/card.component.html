@@ -1,0 +1,40 @@
+<mat-card *ngIf="isProduct" class="card">
+    <img mat-card-image class="image" src="{{ cardData.imageURL }}" />
+    <mat-card-content class="bottomContainer">
+        <div>
+            <h1 class="titleShort">{{ cardData.title }}</h1>
+        </div>
+        <div>
+            <score [score]="cardData.rating"></score>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="isProducer" class="card">
+    <img mat-card-image class="image" src="{{ cardData.imageURL }}" />
+    <mat-card-content class="bottomContainer">
+        <div>
+            <h1 class="titleShort">{{ cardData.title }}</h1>
+        </div>
+        <div>
+            <score [score]="cardData.rating"></score>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="isOrder" class="card">
+    <img mat-card-image class="image" src="{{ cardData.imageURL }}" />
+    <mat-card-content class="bottomContainer">
+        <div>
+            <h1 class="titleLong">{{ cardData.title }}</h1>
+        </div>
+        <div class="alignEnd">
+            <h4 class="time">{{ cardData.ETA }}</h4>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="newProduct" class="card newProduct">
+    <img mat-card-image class="addProduct" src="../../../../assets/icons/add-product-picture.svg" />
+    <h4 class="tag">Add Product</h4>
+</mat-card>

@@ -53,18 +53,25 @@
 
 .newProduct {
     background-color: #C4C4C4;
+    width: 300px;
+    height: 160px;
 }
 
 .newProductContainer {
+    height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
 }
 
 .addProduct {
-    display: block;
-    margin: auto;
+    //display: block;
+    //margin: auto;
     max-width: 100px;
     max-height: 100px;
+    margin-bottom: 0px;
 }
 
 .tag {

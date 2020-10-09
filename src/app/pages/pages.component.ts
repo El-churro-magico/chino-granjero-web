@@ -42,7 +42,6 @@ export class PagesComponent implements OnInit {
         description: "This is de description",
         category: "Cool category"
       });
-      console.log(this.cards);
     }
     this.cards.push({
       newProduct: true,

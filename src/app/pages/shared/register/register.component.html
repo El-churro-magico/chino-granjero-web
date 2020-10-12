@@ -18,14 +18,17 @@
             <div class="verticalContainer">
                 <selector
                     [elementList]="this.provinces"
+                    [placeHolder]="'Provincia'"
                     (clickedEvent)="selectedProvince($event)"
                 ></selector>
                 <selector 
                     [elementList]="this.cantons"
+                    [placeHolder]="'Cantón'"
                     (clickedEvent)="selectedCanton($event)">
                 </selector>
                 <selector
                     [elementList]="this.districts"
+                    [placeHolder]="'Distrito'"
                     (clickedEvent)="selectedDistrict($event)">
                 </selector>
             </div>

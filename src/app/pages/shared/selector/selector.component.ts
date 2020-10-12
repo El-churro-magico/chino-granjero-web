@@ -9,6 +9,8 @@ import { SelectorData } from '../selectorData';
 })
 export class SelectorComponent implements OnInit {
   @Input() elementList: SelectorData[];
+  @Input() placeHolder: string;
+  
   @Output() clickedEvent = new EventEmitter<SelectorData>();
 
   panelColor = new FormControl('C4C4C4, 40%');

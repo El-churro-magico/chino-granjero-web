@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { LogInInterface } from '../../shared/LogInInterface';
 
 @Component({
   selector: 'login',
@@ -11,7 +10,6 @@ export class LoginComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

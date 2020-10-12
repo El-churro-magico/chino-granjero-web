@@ -1,0 +1,79 @@
+<mat-card *ngIf="producerView" class="card">
+    <div class="mainContainer">
+        <div class="header">
+            <button class="button">
+                <img src="../../../../assets/icons/return.svg">
+            </button>
+            <input type="text" class="title" [(ngModel)]="name">
+        </div>
+        <button *ngIf="!newProduct" class="imageButton">
+            <img class="image" src="{{ imageURL }}">
+        </button>
+        <button *ngIf="newProduct" class="imageButton">
+            <img class="image" src="../../../../assets/icons/add-product-picture.svg">
+        </button>
+        <textarea class="textArea">{{ description }}</textarea>
+        <div class="horizontalContainer">
+            <div *ngIf="newProduct" class="verticalContainer">
+                <selector
+                [elementList]="categories"
+                [placeHolder]="'Categoría'"
+                ></selector>
+                <selector
+                [elementList]="units"
+                [placeHolder]="'Unidad'"></selector>
+            </div>
+            <div *ngIf="!newProduct" class="verticalContainer">
+                <selector
+                [elementList]="categories"
+                [placeHolder]="'Categoría'"
+                ></selector>
+                <selector
+                [elementList]="units"
+                [placeHolder]="'Unidad'"></selector>
+            </div>
+            <div class="verticalContainer">
+                <h4 class="tag">En inventario:</h4>
+                <input type="number" class="numberInput" [(ngModel)]="availability">
+            </div>
+        </div>
+        <button class="saveButton">
+            Guardar
+        </button>
+    </div>
+</mat-card>
+
+
+<mat-card *ngIf="!producerView" class="card">
+    <div class="mainContainer">
+        <div class="header">
+            <button class="button">
+                <img src="../../../../assets/icons/return.svg">
+            </button>
+            <h1 class="title">{{ name }}</h1>
+        </div>
+        <img class="image" src="{{ imageURL }}">
+        <textarea readonly class="textArea">{{ description }}</textarea>
+        <div class="horizontalContainer">
+            <div class="verticalContainer">
+                <h2 class="displayTags">Categoría del producto:</h2>
+                <h2 class="displayTags">{{ category }}</h2>
+            </div>
+            <div class="verticalContainer">
+                <h2 class="displayTags">Añadir al carrito</h2>
+                <div class="horizontalContainer">
+                    <button class="button">
+                        <img src="../../../../assets/icons/add-item.svg">
+                    </button>
+                    <h2 class="displayTags">{{ quantity }}</h2>
+                    <button class="button">
+                        <img src="../../../../assets/icons/remove-item.svg">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <button class="saveButton">
+            Agregar
+        </button>
+    </div>
+</mat-card>

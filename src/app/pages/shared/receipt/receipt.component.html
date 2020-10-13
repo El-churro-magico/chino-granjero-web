@@ -1,0 +1,59 @@
+<mat-card class="card">
+    <div class="mainContainer">
+        <div class="header">
+            <button class="button">
+                <img class="icon" src="../../../../assets/icons/close.svg">
+            </button>
+            <h1 class="title">{{ receiptData.receiptID }}</h1>
+        </div>
+        <div class="titlesContainer">
+            <div style="width: 45%;">
+                <h3 class="subtitle">Nombre del Producto</h3>
+            </div>
+            <div style="width: 20%;">
+                <h3 class="subtitle">Categoría</h3>
+            </div>
+            <div style="width: 15%;">
+                <h3 class="subtitle">Cantidad</h3>
+            </div>
+            <div style="width: 15%;">
+                <h3 class="subtitle">Precio</h3>
+            </div> 
+        </div>
+        <div class="ordersContainer">
+            <div class="product" *ngFor="let product of productsList">
+                <div class="nameContainer">
+                    <h4 class="text">{{ product.productName }}</h4>
+                </div>
+                <div class="categoryContainer">
+                    <h4 class="text">{{ product.category }}</h4>
+                </div>
+                <div class="quantityContainer">
+                    <h4 class="text">{{ product.quantity }}</h4>
+                </div>
+                <div class="priceContainer">
+                    <h4 class="text">{{ product.unitPrice }}</h4>
+                </div> 
+            </div>
+        </div>
+        <textarea class="textarea">{{ receiptData.deliveryAddress }}</textarea>
+        <div class="horizontalContainer">
+            <div class="verticalContainer">
+                <div class="horizontalContainer">
+                    <h3 class="subtitle">Total:</h3>
+                    <h3 class="bottomTag">{{ total }}</h3>
+                </div>
+            </div>
+            <div class="verticalContainer">
+                <div class="horizontalContainer">
+                    <h3 class="subtitle">Hora de Entrega: </h3>
+                    <h3 class="bottomTag">{{ receiptData.time }}</h3>
+                </div>
+            </div>
+        </div>
+        <div class="horizontalContainer">
+            <button class="button mainButton">Ver Comprobante</button>
+            <button class="button mainButton">Marcar como Completada</button>
+        </div>
+    </div>
+</mat-card>

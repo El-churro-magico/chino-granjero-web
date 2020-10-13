@@ -20,6 +20,7 @@ import { MainCardComponent } from './main-card/main-card.component';
 import { CardComponent } from './card/card.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ReceiptComponent } from './receipt/receipt.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ProfileComponent } from './profile/profile.component';
     MainCardComponent,
     CardComponent,
     ProductDetailsComponent,
-    ProfileComponent
+    ProfileComponent,
+    ReceiptComponent
   ],
   imports: [
     CommonModule,
@@ -65,7 +67,8 @@ import { ProfileComponent } from './profile/profile.component';
     MainCardComponent,
     CardComponent,
     ProductDetailsComponent,
-    ProfileComponent
+    ProfileComponent,
+    ReceiptComponent
   ]
 })
 export class SharedModule { }

@@ -6,6 +6,8 @@ import { ButtonInterface } from './shared/ButtonInterface';
 import { CardInterface } from './shared/CardInterface';
 import { SelectorData } from './shared/selectorData'
 import { ProfileData } from '../pages/shared/ProfileData';
+import { ReceiptData } from './shared/ReceiptData';
+import { DisplayerData } from './shared/DisplayerData';
 
 @Component({
   selector: 'app-pages',
@@ -13,7 +15,19 @@ import { ProfileData } from '../pages/shared/ProfileData';
   styleUrls: ['./pages.component.scss']
 })
 export class PagesComponent implements OnInit {
-  name: string = "Productor";
+  displayerData: DisplayerData[] = []
+
+  receiptData: ReceiptData = {
+    clientID: "Client ID",
+    products: [],
+    receiptID: "Receipt ID",
+    deliveryAddress: "This is where the order must be delivered",
+    total: 0,
+    time: "10:25"
+  }
+
+
+  /*name: string = "Productor";
 
   buttons: ButtonInterface[] = [];
   cards: CardInterface[] = [];
@@ -52,10 +66,19 @@ export class PagesComponent implements OnInit {
     district: "Heredia",
     score: 4.5
   }
-
+  */
   constructor() { }
 
   ngOnInit(): void {
+    for (let i = 0; i < 15; i++) {
+      this.displayerData.push(    {
+        productName: "Pan dulce",
+        category: "Comida preparada",
+        quantity: 6,
+        unitPrice: 500
+      });
+    }
+    this.receiptData.products = this.displayerData;
     /*
       BUTTONS
 

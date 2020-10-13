@@ -1,0 +1,130 @@
+$textColor: rgba(0, 0, 0, 0.3);
+
+.profileCard {
+    height: 100vh;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0px;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.returnButton {
+    margin: 20px;
+    margin-top: 10px;
+    background-color: white;
+    border: transparent;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+}
+
+.editButton {
+    margin: 20px;
+    margin-top: 10px;
+    font-size: 18px;
+    height: 40px;
+    width: 100px;
+    background: rgba(82, 48, 124, 0.7);
+    border: transparent;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+}
+
+.saveButton {
+    margin: 20px;
+    margin-top: 10px;
+    font-size: 18px;
+    height: 40px;
+    width: 100px;
+    background: rgba(65, 164, 32, 0.7);
+    border: transparent;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    cursor: pointer;
+}
+
+.buttonText {
+    font-size: 18px;
+    margin: 0px;
+    color: white;
+}
+
+.profilePicture {
+    height: 250px;
+    width: 250px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.3));
+    border-radius: 50%;
+}
+
+.profilePictureInput {
+    height: 250px;
+    width: 250px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.3));
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+}
+
+.role {
+    margin-top: 30px;
+    color: #52307C;
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.bottomContainer {
+    width: 100%;
+    margin-top: 60px;
+    margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.textLine {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.tag {
+    font-size: 24px;
+    margin-right: 10px;
+    color: $textColor;
+}
+
+.input {
+    width: 200px;
+    margin-bottom: 16px;
+    outline: transparent;
+    border: transparent;
+    font-size: 24px;
+    color: $textColor;
+}
+
+.clickable {
+    background-color: transparent;
+    outline: transparent;
+    border: transparent;
+}
+
+.clickable:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,93 @@
+<mat-card *ngIf="!edit" class="profileCard">
+    <div class="header">
+        <button class="returnButton">
+            <img src="../../../../assets/icons/return.svg">
+        </button>
+        <button class="editButton" (click)="enableEdit()">
+            <img src="../../../../assets/icons/edit.svg">
+            <h3 class="buttonText">Editar</h3>
+        </button>
+    </div>
+    <img class="profilePicture" src="{{profileData.imageURL}}">
+    <h1 class="role">{{ profileData.role }}</h1>
+    <score [score]="profileData.score"></score>
+    <div class="bottomContainer">
+        <div class="textLine">
+            <h2 class="tag">Nombre: </h2>
+            <h2 class="tag">{{ profileData.name }}</h2>
+        </div>
+        <div class="textLine">
+            <h2 class="tag">Apellidos: </h2>
+            <h2 class="tag">{{ profileData.surnames }}</h2>
+        </div>
+        <div class="textLine">
+            <h2 class="tag">Cédula: </h2>
+            <h2 class="tag">{{ profileData.identificationCard }}</h2>
+        </div>
+        <div class="textLine">
+            <h2 class="tag">Provincia: </h2>
+            <h2 class="tag">{{ profileData.province }}</h2>
+        </div>
+        <div class="textLine">
+            <h2 class="tag">Cantón: </h2>
+            <h2 class="tag">{{ profileData.canton }}</h2>
+        </div>
+        <div class="textLine">
+            <h2 class="tag">Distrito: </h2>
+            <h2 class="tag">{{ profileData.district }}</h2>
+        </div>
+    </div>
+</mat-card>
+
+
+<mat-card *ngIf="edit" class="profileCard">
+    <div class="header">
+        <button class="returnButton">
+            <img src="../../../../assets/icons/return.svg">
+        </button>
+        <button class="saveButton" (click)="disableEdit()">
+            <img src="../../../../assets/icons/save.svg">
+            <h3 class="buttonText">Guardar</h3>
+        </button>
+    </div>
+    <button class="clickable">
+        <img class="profilePicture" src="{{profileData.imageURL}}">
+    </button>
+    <h1 class="role">{{ profileData.role }}</h1>
+    <score [score]="profileData.score"></score>
+    <div class="bottomContainer">
+        <div class="textLine">
+            <h2 class="tag">Nombre: </h2>
+            <input type="text" class="input clickable" [(ngModel)]="profileData.name">
+        </div>
+        <div class="textLine">
+            <h2 class="tag">Apellidos: </h2>
+            <input type="text" class="input clickable" [(ngModel)]="profileData.surnames">
+        </div>
+        <div class="textLine">
+            <h2 class="tag">Cédula: </h2>
+            <input type="text" class="input clickable" [(ngModel)]="profileData.identificationCard">
+        </div>
+        <div class="textLine">
+            <selector
+            [elementList]="this.provinces"
+            [placeHolder]="'Provincia'"
+            (clickedEvent)="selectedProvince($event)">
+            </selector>
+        </div>
+        <div class="textLine">
+            <selector 
+            [elementList]="this.cantons"
+            [placeHolder]="'Cantón'"
+            (clickedEvent)="selectedCanton($event)">
+            </selector>
+        </div>
+        <div class="textLine">
+            <selector
+            [elementList]="this.districts"
+            [placeHolder]="'Distrito'"
+            (clickedEvent)="selectedDistrict($event)">
+            </selector>
+        </div>
+    </div>
+</mat-card>

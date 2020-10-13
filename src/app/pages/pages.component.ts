@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { race } from 'rxjs';
 
 import { ProductDetails } from '../pages/shared/ProductDetails';
 
 import { ButtonInterface } from './shared/ButtonInterface';
 import { CardInterface } from './shared/CardInterface';
-import { SelectorData } from './shared/selectorData';
+import { SelectorData } from './shared/selectorData'
+import { ProfileData } from '../pages/shared/ProfileData';
 
 @Component({
   selector: 'app-pages',
@@ -40,6 +40,18 @@ export class PagesComponent implements OnInit {
     {name: "kilogramos", identifier: 1},
     {name: "Servicio", identifier: 2},
   ]
+
+  profileData: ProfileData = {
+    imageURL: 'https://ichef.bbci.co.uk/news/410/cpsprodpb/162E3/production/_103115809_robbierotten.jpg',
+    role: "Producer",
+    name: "Robbie",
+    surnames: "Rotten",
+    identificationCard: "Profile ID",
+    province: "Heredia",
+    canton: "Heredia",
+    district: "Heredia",
+    score: 4.5
+  }
 
   constructor() { }
 

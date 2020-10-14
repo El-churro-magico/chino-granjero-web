@@ -1,14 +1,13 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
-import { AdminRoutingModule } from './admin-routing.module';
-
-
-@NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    AdminRoutingModule
-  ]
+@Component({
+  selector:'app-admin',
+  templateUrl: 'admin.page.html',
+  styleUrls: ['admin.page.scss']
 })
-export class AdminModule { }
+
+
+
+export class AdminPage { }

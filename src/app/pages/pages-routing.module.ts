@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+
 import { PagesComponent } from './pages.component';
+import { AdminPage} from './admin/admin.page';
 
 const routes: Routes = [
   {
@@ -21,6 +23,9 @@ const routes: Routes = [
         redirectTo: 'view'
       }
     ]
+  },{
+    path:'admin',
+    component: AdminPage
   }
 ];
 

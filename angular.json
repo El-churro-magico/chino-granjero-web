@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "chino-granjero"
+  "defaultProject": "chino-granjero",
+  "cli": {
+    "analytics": false
+  }
 }

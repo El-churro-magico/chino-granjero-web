@@ -1,0 +1,73 @@
+.field{
+  display: inline-block;
+  text-align: left;
+  width: 75%;
+  &__title{
+    font-weight: 700;
+    font-size: 18px;
+  }
+  &__content{
+    text-align: center;
+    height: 280px;
+    overflow: auto;
+    background: #ebebeb;
+    border-radius: 10px;
+    margin-left: 40px;
+    padding: 10px 20px;
+    width: 100%;
+  }
+}
+
+.field-card{
+  overflow: hidden;
+  height: 21%;
+  background: #fff;
+  border-radius: 10px;
+  width: 100%;
+  text-align: left;
+  position: relative;
+  &__image{
+    width: 15%;
+    overflow: hidden;
+    height: 100%;
+    width: 8.5%;
+    display: inline-block;
+    margin-left: 1%;
+    margin-right: 2%;
+    img{
+      width: 100%;
+    }
+  }
+  &__title{
+    display: inline-block;
+    position: absolute;
+    left: 11%;
+    top: 10%;
+    font-weight: 700;
+  }
+  &__subtitle{
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+  }
+  &__button1{
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: auto;
+    top: 10%;
+    img{
+      height: 80%;
+    }
+  }
+  &__button2{
+    display: inline-block;
+    position: absolute;
+    right: 12%;
+    top: 23%;
+    img{
+      height: 100%;
+    }
+  }
+}

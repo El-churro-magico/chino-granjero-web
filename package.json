@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "pug-it":"pug src -P -w"
+    "pug-it": "pug src -P -w"
   },
   "private": true,
   "dependencies": {
@@ -18,10 +18,13 @@
     "@angular/compiler": "~10.1.2",
     "@angular/core": "~10.1.2",
     "@angular/forms": "~10.1.2",
+    "@angular/localize": "~10.1.2",
     "@angular/material": "^10.2.4",
     "@angular/platform-browser": "~10.1.2",
     "@angular/platform-browser-dynamic": "~10.1.2",
     "@angular/router": "~10.1.2",
+    "@ng-bootstrap/ng-bootstrap": "^7.0.0",
+    "bootstrap": "^4.5.0",
     "cr-pcd": "^1.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

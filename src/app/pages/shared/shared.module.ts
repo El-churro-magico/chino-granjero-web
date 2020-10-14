@@ -62,6 +62,7 @@ import { ReceiptComponent } from './receipt/receipt.component';
     ViewSelectorComponent,
     LoginComponent,
     RegisterComponent,
+    SelectorComponent,
     ScoreComponent,
     HeaderComponent,
     MainCardComponent,

@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'login',
@@ -8,8 +10,17 @@ import { Component, OnInit, Input } from '@angular/core';
 export class LoginComponent implements OnInit {
   @Input() logInView: string;
 
-  constructor() { }
+  data: any;
+  view: string = "";
 
-  ngOnInit(): void {}
+  constructor(private activatedRoute: ActivatedRoute) { }
+
+  ngOnInit(): void {
+    console.log("Estamos en login")
+    this.activatedRoute.data.subscribe(data => {
+      this.view = data.view;
+    });
+    console.log(this.view);
+  }
 
 }

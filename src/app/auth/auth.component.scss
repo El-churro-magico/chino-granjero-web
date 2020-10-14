@@ -1,7 +1,85 @@
+$purple: rgba(82, 48, 124, 0.4);
+$purpleHover: rgba(82, 48, 124);
+$green: rgba(65, 164, 32, 0.4);
+$greenHover:rgba(65, 164, 32);
+$red: rgba(227, 36, 43, 0.4);
+$redHover: rgba(227, 36, 43);
+$buttonText: #FFFFFF;
+
 .mainContainer {
     display: flex;
     height: 100vh;
     justify-content: center;
     align-items: center;
     align-content: center;
+}
+
+.card {
+    height: 800px;
+    width: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.logo {
+    margin-top: 20px;
+}
+
+.buttonContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+.button {
+    font-family: Montserrat;
+    color: $buttonText;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 44px;
+    letter-spacing: 0em;
+    text-align: center;
+    height: 84px;
+    width: 210px;
+    margin-top: 30px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.clientButton {
+    background-color: $purple;
+    border: $purple;
+}
+
+.clientButton:hover {
+    background-color: $purpleHover;
+    border: $purpleHover;
+}
+
+.producerButton {
+    background-color: $green;
+    border: $green;
+}
+
+.producerButton:hover {
+    background-color: $greenHover;
+    border: $greenHover;
+}
+
+.adminButton {
+    background-color: $red;
+    border: $red;
+}
+
+.adminButton:hover {
+    background-color: $redHover;
+    border: $redHover;
 }

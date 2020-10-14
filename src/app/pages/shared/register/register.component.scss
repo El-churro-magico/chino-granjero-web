@@ -1,5 +1,13 @@
 $fontColor: rgba(0, 0, 0, 0.4);
 
+.mainContainer {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
 .card {
     height: 800px;
     width: 650px;

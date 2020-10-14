@@ -4,6 +4,14 @@ $green: rgba(65, 164, 32, 0.4);
 $greenText:#41A420;
 $inputBox: rgba(0, 0, 0, 0.15);
 
+.mainContainer {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
 .card {
     height: 800px;
     width: 650px;
@@ -35,7 +43,7 @@ $inputBox: rgba(0, 0, 0, 0.15);
     letter-spacing: 0em;
     text-align: center;
     height: 84px;
-    width: 210px;
+    width: auto;
     border-radius: 6px;
     background-color: $green;
     color: $greenText;
@@ -73,6 +81,7 @@ input::-webkit-input-placeholder {
     border: none;
     outline: none;
     color: white;
+    cursor: pointer;
 }
 
 .link {

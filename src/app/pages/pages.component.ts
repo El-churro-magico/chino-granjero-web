@@ -4,7 +4,7 @@ import { ProductDetails } from '../pages/shared/ProductDetails';
 
 import { ButtonInterface } from './shared/ButtonInterface';
 import { CardInterface } from './shared/CardInterface';
-import { SelectorData } from './shared/selectorData'
+import { SelectorData } from '../pages/shared/selectorData'
 import { ProfileData } from '../pages/shared/ProfileData';
 import { ReceiptData } from './shared/ReceiptData';
 import { DisplayerData } from './shared/DisplayerData';

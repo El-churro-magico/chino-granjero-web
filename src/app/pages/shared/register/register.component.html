@@ -1,41 +1,43 @@
-<mat-card class="card">
-    <button class="addPicture">
-        <img class="clickableIcon" src="../../../../assets/icons/add-profile-picture.svg">
-    </button>
-    <div class="bottomContainer">
-        <form>
-            <mat-form-field class="inputLong">
-                <input matInput #message placeholder="Nombre">
-            </mat-form-field>
-            <mat-form-field class="inputLong">
-                <input matInput #message placeholder="Apellidos">
-            </mat-form-field>
-            <mat-form-field class="inputLong">
-                <input matInput #message placeholder="Cedula">
-            </mat-form-field>  
-        </form>
-        <div class="horizontalContainer">
-            <div class="verticalContainer">
-                <selector
-                    [elementList]="this.provinces"
-                    [placeHolder]="'Provincia'"
-                    (clickedEvent)="selectedProvince($event)"
-                ></selector>
-                <selector 
-                    [elementList]="this.cantons"
-                    [placeHolder]="'Cantón'"
-                    (clickedEvent)="selectedCanton($event)">
-                </selector>
-                <selector
-                    [elementList]="this.districts"
-                    [placeHolder]="'Distrito'"
-                    (clickedEvent)="selectedDistrict($event)">
-                </selector>
-            </div>
-            <div class="verticalContainer">
-                <input type="date" matInput #message placeholder="DD/MM/YYYY">
-                <input type="number" matInput #message placeholder="000000000">
+<div class="mainContainer">
+    <mat-card class="card">
+        <button class="addPicture">
+            <img class="clickableIcon" src="../../../../assets/icons/add-profile-picture.svg">
+        </button>
+        <div class="bottomContainer">
+            <form>
+                <mat-form-field class="inputLong">
+                    <input matInput #message placeholder="Nombre">
+                </mat-form-field>
+                <mat-form-field class="inputLong">
+                    <input matInput #message placeholder="Apellidos">
+                </mat-form-field>
+                <mat-form-field class="inputLong">
+                    <input matInput #message placeholder="Cedula">
+                </mat-form-field>  
+            </form>
+            <div class="horizontalContainer">
+                <div class="verticalContainer">
+                    <selector
+                        [elementList]="this.provinces"
+                        [placeHolder]="'Provincia'"
+                        (clickedEvent)="selectedProvince($event)"
+                    ></selector>
+                    <selector 
+                        [elementList]="this.cantons"
+                        [placeHolder]="'Cantón'"
+                        (clickedEvent)="selectedCanton($event)">
+                    </selector>
+                    <selector
+                        [elementList]="this.districts"
+                        [placeHolder]="'Distrito'"
+                        (clickedEvent)="selectedDistrict($event)">
+                    </selector>
+                </div>
+                <div class="verticalContainer">
+                    <input type="date" matInput #message placeholder="DD/MM/YYYY">
+                    <input type="number" matInput #message placeholder="000000000">
+                </div>
             </div>
         </div>
-    </div>
-</mat-card>
+    </mat-card>
+</div>

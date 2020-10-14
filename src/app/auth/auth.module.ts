@@ -5,13 +5,12 @@ import { SharedModule } from '../pages/shared/shared.module';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 
-
 @NgModule({
   declarations: [AuthComponent],
   imports: [
     CommonModule,
     AuthRoutingModule,
-    SharedModule
-  ]
+    SharedModule,
+  ],
 })
 export class AuthModule { }

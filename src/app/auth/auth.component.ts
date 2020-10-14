@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'auth',
@@ -6,29 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-  view: boolean = true;
-  login: boolean = false;
-  register: boolean = false;
+  view: string = "client";
 
-  selectedView: string = "";
-  userId: string = "";
-
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log(this.view);
   }
 
-  switchToLogin() {
-    this.view = false;
-    this.register = false;
-    this.login = true;
-  }
-
-  switchToRegister() {
-    this.view = false;
-    this.login = false;
-    this.register = true;
+  navigate(view: string) {
+    console.log("Estamos navegando");
+    this.router.navigateByUrl('login');
   }
 
 }

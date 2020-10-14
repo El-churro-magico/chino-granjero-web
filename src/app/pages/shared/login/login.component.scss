@@ -35,17 +35,23 @@ $inputBox: rgba(0, 0, 0, 0.15);
 }
 
 .titleBox {
+    margin-bottom: 30px;
+    text-align: center;
+    height: 84px;
+    width: auto;
+    border-radius: 6px;
+    background-color: $green;
+}
+
+.title {
+    margin-left: 10px;
+    margin-right: 10px;
     font-family: Montserrat;
     font-size: 36px;
     font-style: normal;
     font-weight: 700;
     line-height: 84px;
     letter-spacing: 0em;
-    text-align: center;
-    height: 84px;
-    width: auto;
-    border-radius: 6px;
-    background-color: $green;
     color: $greenText;
 }
 
@@ -60,7 +66,6 @@ input {
 
 input,
 input::-webkit-input-placeholder {
-    margin-left: 0px;
     font-size: 24px;
     color: white;
 }

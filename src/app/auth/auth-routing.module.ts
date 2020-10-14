@@ -11,8 +11,19 @@ const routes: Routes = [
     component: AuthComponent,
   },
   {
-    path: 'login',
+    path: 'login-client',
     component: LoginComponent,
+    data: {view: 'Cliente'}
+  },
+  {
+    path: 'login-producer',
+    component: LoginComponent,
+    data: {view: 'Productor'}
+  },
+  {
+    path: 'login-administrator',
+    component: LoginComponent,
+    data: {view: 'Administrador'}
   },
   {
     path: 'register',

@@ -2,6 +2,8 @@ import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Router} from '@angular/router';
 
+import {AdminService} from './admin.service';
+
 
 @Component({
   selector:'app-admin',
@@ -9,4 +11,15 @@ import {Router} from '@angular/router';
   styleUrls:['admin.page.scss']
 })
 
-export class AdminPage{ }
+export class AdminPage{
+  constructor(
+    public adminService: AdminService
+  ){}
+
+  convertToString():string{
+    this.adminService.productoresPendientes.toString = function(){return JSON.stringify(this)};
+    const resultado = this.adminService.productoresPendientes.toString()
+    return resultado;
+  }
+
+}

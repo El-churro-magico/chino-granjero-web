@@ -1,0 +1,6 @@
+
+<div class="field"><span class="field__title">{{this.title}}</span>
+  <div class="field__content">
+    <admin-field-card *ngFor="let card of this.cards" type="{{this.type}}" card="{{this.cardToString(card)}}"></admin-field-card>
+  </div>
+</div>

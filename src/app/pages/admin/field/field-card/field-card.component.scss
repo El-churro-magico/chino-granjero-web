@@ -1,0 +1,66 @@
+.field-card{
+  overflow: hidden;
+  height: 21%;
+  background: #fff;
+  border-radius: 10px;
+  width: 100%;
+  text-align: left;
+  position: relative;
+  margin-bottom: 15px;
+  z-index: 1;
+  &__image{
+    margin-left: 1%;
+    display: inline;
+    img{
+      height: 100%;
+      width: auto;
+      margin-top: -1%;
+    }
+  }
+  &__text{
+    display: inline-block;
+    margin-left: 1%;
+  }
+  &__title{
+    font-weight: 700;
+  }
+  &__subtitle{
+  }
+  &__buttons{
+    position: absolute;
+    display: inline-block;
+    margin-left: 50%;
+    right: 15px;
+    height: 100%;
+    top: 8%;
+    z-index: 3;
+  }
+  &__button1{
+    display: inline-block;
+    margin-right: 1rem;
+    img{
+      height: 100%;
+    }
+    &:hover{
+      cursor: pointer;
+    }
+  }
+  &__button2{
+    display: inline-block;
+    height: 100%;
+    width: auto;
+    img{
+      height: 80%;
+    }
+    &:hover{
+      cursor:pointer;
+    }
+  }
+}
+
+.modal-body{
+  textarea{
+    width: 80%;
+    margin-top: 3%;
+  }
+}

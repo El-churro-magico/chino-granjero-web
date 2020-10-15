@@ -5,18 +5,8 @@
     a Salir
 .body
   .body__content  
-    .field
-      span.field__title Solicitudes de afiliacion
-      .field__content
-        .field-card
-          .field-card__image
-            img(src='https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.shareicon.net%2Fdata%2F2016%2F05%2F26%2F771190_people_512x512.png&f=1&nofb=1')
-          .field-card__title
-            span De la Olla José Carlos
-          .field-card__subtitle
-            span 8888 8888
-          .field-card__button1
-            img(src="https://img.icons8.com/pastel-glyph/64/000000/cancel.png")
-          .field-card__button2
-            img(src="https://img.icons8.com/android/24/000000/checkmark.png")
+    admin-field(
+      title="Solicitudes de afiliación"
+      type="afiliacion"
+      cards='{{this.convertToString()}}')
     

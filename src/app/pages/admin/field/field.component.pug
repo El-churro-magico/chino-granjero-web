@@ -1,0 +1,8 @@
+.field
+  span.field__title {{this.title}}
+  .field__content
+    admin-field-card(
+      '*ngFor'='let card of this.cards'
+      type='{{this.type}}'
+      card='{{this.cardToString(card)}}'
+      )

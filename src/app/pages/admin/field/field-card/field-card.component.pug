@@ -1,0 +1,31 @@
+doctype html
+ng-template(let-modal '#content')
+  .modal-header
+    h4#modal-basic-title.modal-title Rechazar solicitud
+    button.close(type="button" aria-label="Close" '(click)'="modal.dismiss('Cross click')")
+      span(aria-hidden="true") &times;
+  .modal-body
+    span Por favor especifique por qué rechazó la solicitud a continuación:
+    <br/>
+    textarea('[(ngModel)]'='razonRechazo')   
+  .modal-footer
+    button.btn.btn-outline-dark(type='button' '(click)'="modal.close('Submit')") Enviar comentario
+
+    
+.field-card
+  .field-card__image
+    img('[src]'='this.imgUrl')
+  .field-card__text
+    .field-card__title
+      span {{this.title}}
+    .field-card__subtitle
+      span {{this.subtitle}}
+  .field-card__buttons
+    .field-card__button1(
+      '(*ngIf)'="this.type=='afiliacion'"
+      '(click)'='confirm()')
+      img(src="https://img.icons8.com/android/24/000000/checkmark.png")
+    .field-card__button2(
+      '(*ngIf)'="this.type=='afiliacion'\|\|this.type!='top'"
+      '(click)'='dismiss(content)')
+      img(src="https://img.icons8.com/pastel-glyph/64/000000/cancel.png")

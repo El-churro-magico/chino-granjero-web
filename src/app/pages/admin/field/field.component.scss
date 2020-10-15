@@ -1,0 +1,20 @@
+.field{
+  display: inline-block;
+  text-align: left;
+  width: 75%;
+  margin-bottom: 2rem;
+  &__title{
+    font-weight: 700;
+    font-size: 18px;
+  }
+  &__content{
+    text-align: center;
+    height: 280px;
+    overflow: auto;
+    background: #ebebeb;
+    border-radius: 10px;
+    margin-left: 40px;
+    padding: 10px 20px;
+    width: 100%;
+  }
+}

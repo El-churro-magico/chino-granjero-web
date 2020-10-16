@@ -1,7 +1,9 @@
-$purple: rgba(82, 48, 124, 0.4);
-$purpleHover: rgba(82, 48, 124);
-$green: rgba(65, 164, 32, 0.4);
-$greenText:#41A420;
+$client: rgba(82, 48, 124, 0.7);
+$clientText: #52307C;
+$producer: rgba(65, 164, 32, 0.4);
+$producerText:#41A420;
+$admin: rgba(227, 36, 43, 0.6);
+$adminText: #E3242B;
 $inputBox: rgba(0, 0, 0, 0.15);
 
 .mainContainer {
@@ -40,7 +42,30 @@ $inputBox: rgba(0, 0, 0, 0.15);
     height: 84px;
     width: auto;
     border-radius: 6px;
-    background-color: $green;
+}
+
+.boxClient {
+    background-color: $client;
+}
+
+.titleClient {
+    color: $clientText;
+}
+
+.boxProducer {
+    background-color: $producer;
+}
+
+.titleProducer {
+    color: $producerText;
+}
+
+.boxAdmin {
+    background-color: $admin;
+}
+
+.titleAdmin {
+    color: $adminText;
 }
 
 .title {
@@ -52,7 +77,6 @@ $inputBox: rgba(0, 0, 0, 0.15);
     font-weight: 700;
     line-height: 84px;
     letter-spacing: 0em;
-    color: $greenText;
 }
 
 input {
@@ -79,22 +103,22 @@ input::-webkit-input-placeholder {
     letter-spacing: 0em;
     text-align: center;
     height: 84px;
-    width: 210px;
+    width: 240px;
     margin-top: 30px;
     border-radius: 6px;
-    background-color: $green;
     border: none;
     outline: none;
     color: white;
     cursor: pointer;
 }
 
+
+
 .link {
     background: none;
     border: none;
     outline: none;
     margin-top: 10px;
-    color: $greenText;
     font-size: 24px;
     cursor: pointer;
 }

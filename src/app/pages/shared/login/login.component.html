@@ -2,13 +2,23 @@
     <mat-card class="card">
         <img class="logo" src="../../../../assets/logos/logo-large.svg">
         <div class="bottomContainer">
-            <div  class="titleBox">
-                <h1 class="title">{{ view }}</h1>
+            <div *ngIf="view ==='Cliente'" class="titleBox boxClient">
+                <h1 class="title titleClient">{{ view }}</h1>
             </div>
-            <input type="email" id="email" name="email" placeholder="Email">
-            <input type="password" id="password" name="password" placeholder="Password">
-            <button class="logInButton">Log In</button>
-            <button class="link">or Sign Up</button>
+            <div *ngIf="view ==='Productor'" class="titleBox boxProducer">
+                <h1 class="title titleProducer">{{ view }}</h1>
+            </div>
+            <div *ngIf="view ==='Administrador'" class="titleBox boxAdmin">
+                <h1 class="title titleAdmin">{{ view }}</h1>
+            </div>
+            <input type="email" id="email" name="email" placeholder="Correo">
+            <input type="password" id="password" name="password" placeholder="Contraseña">
+            <button *ngIf="view ==='Cliente'" class="logInButton boxClient">Iniciar sesión</button>
+            <button *ngIf="view ==='Productor'" class="logInButton boxProducer">Iniciar sesión</button>
+            <button *ngIf="view ==='Administrador'" class="logInButton boxAdmin">Iniciar sesión</button>
+            <button *ngIf="view ==='Cliente'" class="link titleClient" [routerLink]="['../register']">o Regístrese</button>
+            <button *ngIf="view ==='Productor'" class="link titleProducer" [routerLink]="['../register']">o Regístrese</button>
+            <button *ngIf="view ==='Administrador'" class="link titleAdmin" [routerLink]="['../register']">o Regístrese</button>
         </div>
     </mat-card>
 </div>

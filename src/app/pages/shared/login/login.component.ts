@@ -13,14 +13,33 @@ export class LoginComponent implements OnInit {
   data: any;
   view: string = "";
 
+  email: string = "";
+  password: string = "";
+
   constructor(private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log("Estamos en login")
     this.activatedRoute.data.subscribe(data => {
       this.view = data.view;
     });
-    console.log(this.view);
+  }
+
+  login() {
+    if(this.validate(this.email, this.password)) {
+      console.log("Estoy adentro >:]");
+    }
+    else {
+      console.log("Te mamaste wey");
+    }
+  }
+
+  validate(email: string, password: string) {
+    if(email != "" && password != ""){
+      return true;
+    }
+    else {
+      console.log("Error, debe ingresar un correo y contraseña validos");
+    }
   }
 
 }

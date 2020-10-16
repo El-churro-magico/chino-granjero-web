@@ -6,6 +6,24 @@ import { Injectable } from '@angular/core';
 
 export class AdminService{
 
+  top:{
+    tipo:string,
+    campo:any
+  }[]=[
+    {
+      tipo:'Productos más vendidos',
+    },
+    {
+      tipo:'Productos con más ganancias'
+    },
+    {
+      tipo:"Productos más vendidos por productor"
+    },
+    {
+      tipo:"Clientes con más compras"
+    }
+  ]
+
   categorias:{
     name:string,
     id:number,

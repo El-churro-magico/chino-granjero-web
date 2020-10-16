@@ -31,4 +31,9 @@ export class AdminPage{
     return resultado;
   }
 
+  topCards():string{
+    const resultado:any = JSON.stringify(this.adminService.top);
+    return resultado;
+  }
+
 }

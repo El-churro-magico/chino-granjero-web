@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<ng-template let-modal #content>
+<ng-template let-modal #confirmacionRechazo>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">Rechazar solicitud</h4>
     <button class="close" type="button" aria-label="Close" (click)="modal.dismiss('Cross click')"><span aria-hidden="true">&times;</span></button>
@@ -11,14 +11,75 @@
     <button class="btn btn-outline-dark" type="button" (click)="modal.close('Submit')">Enviar comentario</button>
   </div>
 </ng-template>
+<ng-template let-modal #informacionEditableP>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Información productor</h4>
+    <button class="close" type="button" aria-label="Close" (click)="modal.dismiss('Cross click')"><span aria-hidden="true">&times;</span></button>
+  </div>
+  <div class="modal-body">
+    <div class="modal-body__campo"><span>Cedula</span>
+      <input type="text" [(ngModel)]="this.card.cedula">
+    </div>
+    <div class="modal-body__campo"><span>Nombre</span>
+      <input type="text" [(ngModel)]="this.card.name">
+    </div>
+    <div class="modal-body__campo"><span>Apellido</span>
+      <input type="text" [(ngModel)]="this.card.lastName">
+    </div>
+    <div class="modal-body__campo"><span>Nombre de la tienda</span>
+      <input type="text" [(ngModel)]="this.card.businessname">
+    </div>
+    <div class="modal-body__campo"><span>Provincia</span>
+      <input type="text" [(ngModel)]="this.card.province">
+    </div>
+    <div class="modal-body__campo"><span>Canton</span>
+      <input type="text" [(ngModel)]="this.card.canton">
+    </div>
+    <div class="modal-body__campo"><span>Distrito</span>
+      <input type="text" [(ngModel)]="this.card.district">
+    </div>
+    <div class="modal-body__campo"><span>Direccion</span>
+      <input type="text" [(ngModel)]="this.card.address">
+    </div>
+    <div class="modal-body__campo"><span>Número de teléfono</span>
+      <input type="text" [(ngModel)]="this.card.phoneN">
+    </div>
+    <div class="modal-body__campo"><span>Fecha de nacimiento</span>
+      <input type="text" [(ngModel)]="this.card.birthDate">
+    </div>
+    <div class="modal-body__campo"><span>Número sinpe</span>
+      <input type="text" [(ngModel)]="this.card.sinpeN">
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-outline-dark" type="button" (click)="modal.close('Submit')">Actualizar</button>
+  </div>
+</ng-template>
+<ng-template let-modal #informacionEditableC>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Información productor</h4>
+    <button class="close" type="button" aria-label="Close" (click)="modal.dismiss('Cross click')"><span aria-hidden="true">&times;</span></button>
+  </div>
+  <div class="modal-body">
+    <div class="modal-body__campo"><span>Nombre de categoria</span>
+      <input type="text" [(ngModel)]="this.card.name">
+    </div>
+    <div class="modal-body__campo"><span>ID de categoria</span>
+      <input type="text" [(ngModel)]="this.card.id" disabled>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-outline-dark" type="button" (click)="modal.close('Submit')">Actualizar</button>
+  </div>
+</ng-template>
 <div class="field-card">
-  <div class="field-card__image"><img [src]="this.imgUrl"></div>
-  <div class="field-card__text">
+  <div class="field-card__image" (click)="this.mostrarInfo(informacionEditableP, informacionEditableC)"><img [src]="this.imgUrl"></div>
+  <div class="field-card__text" (click)="this.mostrarInfo(informacionEditableP, informacionEditableC)">
     <div class="field-card__title"><span>{{this.title}}</span></div>
     <div class="field-card__subtitle"><span>{{this.subtitle}}</span></div>
   </div>
   <div class="field-card__buttons">
-    <div class="field-card__button1" (*ngIf)="this.type=='afiliacion'" (click)="confirm()"><img src="https://img.icons8.com/android/24/000000/checkmark.png"></div>
-    <div class="field-card__button2" (*ngIf)="this.type=='afiliacion'||this.type!='top'" (click)="dismiss(content)"><img src="https://img.icons8.com/pastel-glyph/64/000000/cancel.png"></div>
+    <div class="field-card__button1" *ngIf="this.type=='afiliacion'" (click)="confirm()"><img src="https://img.icons8.com/android/24/000000/checkmark.png"></div>
+    <div class="field-card__button2" *ngIf="this.type!='top'" (click)="dismiss(confirmacionRechazo)"><img src="https://img.icons8.com/pastel-glyph/64/000000/cancel.png"></div>
   </div>
 </div>

@@ -16,9 +16,18 @@ export class AdminPage{
     public adminService: AdminService
   ){}
 
-  convertToString():string{
-    this.adminService.productoresPendientes.toString = function(){return JSON.stringify(this)};
-    const resultado = this.adminService.productoresPendientes.toString()
+  afiliacionCards():string{
+    const resultado:any = JSON.stringify(this.adminService.productoresPendientes);
+    return resultado;
+  }
+
+  productoresCards():string{
+    const resultado:any = JSON.stringify(this.adminService.productores);
+    return resultado;
+  }
+
+  categoriasCards():string{
+    const resultado:any = JSON.stringify(this.adminService.categorias);
     return resultado;
   }
 

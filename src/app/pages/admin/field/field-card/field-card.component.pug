@@ -1,5 +1,5 @@
 doctype html
-ng-template(let-modal '#content')
+ng-template(let-modal '#confirmacionRechazo')
   .modal-header
     h4#modal-basic-title.modal-title Rechazar solicitud
     button.close(type="button" aria-label="Close" '(click)'="modal.dismiss('Cross click')")
@@ -11,21 +11,78 @@ ng-template(let-modal '#content')
   .modal-footer
     button.btn.btn-outline-dark(type='button' '(click)'="modal.close('Submit')") Enviar comentario
 
-    
+ng-template(let-modal '#informacionEditableP')
+  .modal-header
+    h4#modal-basic-title.modal-title Información productor
+    button.close(type="button" aria-label="Close" '(click)'="modal.dismiss('Cross click')")
+      span(aria-hidden="true") &times;
+  .modal-body
+    .modal-body__campo
+      span Cedula
+      input(type='text' '[(ngModel)]'='this.card.cedula')
+    .modal-body__campo
+      span Nombre
+      input(type='text' '[(ngModel)]'='this.card.name')
+    .modal-body__campo
+      span Apellido
+      input(type='text' '[(ngModel)]'='this.card.lastName')
+    .modal-body__campo
+      span Nombre de la tienda
+      input(type='text' '[(ngModel)]'='this.card.businessname')
+    .modal-body__campo
+      span Provincia
+      input(type='text' '[(ngModel)]'='this.card.province')
+    .modal-body__campo
+      span Canton
+      input(type='text' '[(ngModel)]'='this.card.canton')
+    .modal-body__campo
+      span Distrito
+      input(type='text' '[(ngModel)]'='this.card.district')
+    .modal-body__campo
+      span Direccion
+      input(type='text' '[(ngModel)]'='this.card.address')
+    .modal-body__campo
+      span Número de teléfono
+      input(type='text' '[(ngModel)]'='this.card.phoneN')
+    .modal-body__campo
+      span Fecha de nacimiento
+      input(type='text' '[(ngModel)]'='this.card.birthDate')
+    .modal-body__campo
+      span Número sinpe
+      input(type='text' '[(ngModel)]'='this.card.sinpeN')
+  .modal-footer
+    button.btn.btn-outline-dark(type='button' '(click)'="modal.close('Submit')") Actualizar
+  
+ng-template(let-modal '#informacionEditableC')
+  .modal-header
+    h4#modal-basic-title.modal-title Información productor
+    button.close(type="button" aria-label="Close" '(click)'="modal.dismiss('Cross click')")
+      span(aria-hidden="true") &times;
+  .modal-body
+    .modal-body__campo
+      span Nombre de categoria
+      input(type='text' '[(ngModel)]'='this.card.name')
+    .modal-body__campo
+      span ID de categoria
+      input(type='text' '[(ngModel)]'='this.card.id' disabled)
+  .modal-footer
+    button.btn.btn-outline-dark(type='button' '(click)'="modal.close('Submit')") Actualizar
+
+      
 .field-card
-  .field-card__image
+  .field-card__image('(click)'='this.mostrarInfo(informacionEditableP, informacionEditableC)')
     img('[src]'='this.imgUrl')
-  .field-card__text
+  .field-card__text('(click)'='this.mostrarInfo(informacionEditableP, informacionEditableC)')
     .field-card__title
       span {{this.title}}
     .field-card__subtitle
       span {{this.subtitle}}
   .field-card__buttons
     .field-card__button1(
-      '(*ngIf)'="this.type=='afiliacion'"
+      '*ngIf'="this.type=='afiliacion'"
       '(click)'='confirm()')
       img(src="https://img.icons8.com/android/24/000000/checkmark.png")
     .field-card__button2(
-      '(*ngIf)'="this.type=='afiliacion'\|\|this.type!='top'"
-      '(click)'='dismiss(content)')
+      '*ngIf'="this.type!='top'"
+      '(click)'='dismiss(confirmacionRechazo)')
       img(src="https://img.icons8.com/pastel-glyph/64/000000/cancel.png")

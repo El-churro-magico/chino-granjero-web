@@ -8,5 +8,14 @@
     admin-field(
       title="Solicitudes de afiliación"
       type="afiliacion"
-      cards='{{this.convertToString()}}')
-    
+      cards='{{this.afiliacionCards()}}')
+    admin-field(
+      title="Productores"
+      type="productores"
+      cards='{{this.productoresCards()}}'
+      )
+    admin-field(
+      title='Categorias'
+      type='categorias'
+      cards='{{this.categoriasCards()}}'
+      )

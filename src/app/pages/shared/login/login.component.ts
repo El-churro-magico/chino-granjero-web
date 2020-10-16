@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-
 @Component({
   selector: 'login',
   templateUrl: './login.component.html',
@@ -13,7 +12,7 @@ export class LoginComponent implements OnInit {
   data: any;
   view: string = "";
 
-  email: string = "";
+  userID: string = "";
   password: string = "";
 
   constructor(private activatedRoute: ActivatedRoute) { }
@@ -25,7 +24,8 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    if(this.validate(this.email, this.password)) {
+    console.log(this.userID, this.password);
+    if(this.validate(this.userID, this.password)) {
       console.log("Estoy adentro >:]");
     }
     else {
@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  validate(email: string, password: string) {
-    if(email != "" && password != ""){
+  validate(userID: string, password: string) {
+    if(userID != "" && password != ""){
       return true;
     }
     else {

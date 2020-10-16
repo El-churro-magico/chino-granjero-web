@@ -26,8 +26,19 @@ const routes: Routes = [
     data: {view: 'Administrador'}
   },
   {
-    path: 'register',
-    component: RegisterComponent
+    path: 'register-client',
+    component: RegisterComponent,
+    data: {view: 'Cliente'}
+  },
+  {
+    path: 'register-producer',
+    component: RegisterComponent,
+    data: {view: 'Productor'}
+  },
+  {
+    path: 'register-admin',
+    component: RegisterComponent,
+    data: {view: 'Administrador'}
   },
   {
     path: '',

@@ -6,13 +6,13 @@
         <div class="bottomContainer">
             <form>
                 <mat-form-field class="inputLong">
-                    <input matInput #message placeholder="Nombre">
+                    <input matInput #message placeholder="Nombre" [(ngModel)]="name">
                 </mat-form-field>
                 <mat-form-field class="inputLong">
-                    <input matInput #message placeholder="Apellidos">
+                    <input matInput #message placeholder="Apellidos" [(ngModel)]="lastNames">
                 </mat-form-field>
                 <mat-form-field class="inputLong">
-                    <input matInput #message placeholder="Cedula">
+                    <input matInput #message placeholder="Cedula" [(ngModel)]="identification">
                 </mat-form-field>  
             </form>
             <div class="horizontalContainer">

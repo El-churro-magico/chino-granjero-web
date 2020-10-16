@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef, EventEmitter, Output } from '@ang
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { CrPcdService } from 'cr-pcd';
+import { ActivatedRoute } from '@angular/router';
 
 import { SelectorData } from '../selectorData';
 
@@ -11,6 +12,8 @@ import { SelectorData } from '../selectorData';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  view: string = "";
+
   imageURL: string;
   name: string;
   lastNames: string;
@@ -25,9 +28,12 @@ export class RegisterComponent implements OnInit {
   cantons: SelectorData[] = [];
   districts: SelectorData[] = [];
 
-  constructor(private crPcdService: CrPcdService, private changeDetector: ChangeDetectorRef) { }
+  constructor(private crPcdService: CrPcdService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.activatedRoute.data.subscribe(data => {
+      this.view = data.view;
+    });
     this.getProvinces();
   }
 
@@ -80,5 +86,9 @@ export class RegisterComponent implements OnInit {
 
   selectedDistrict($event: SelectorData) {
     this.district = $event.name;
+  }
+
+  validateInput() {
+    
   }
 }

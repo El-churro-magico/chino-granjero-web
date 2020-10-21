@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { Component, NgModule, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Router} from '@angular/router';
 
@@ -11,10 +11,14 @@ import {AdminService} from './admin.service';
   styleUrls:['admin.page.scss']
 })
 
-export class AdminPage{
+export class AdminPage implements OnInit{
   constructor(
     public adminService: AdminService
   ){}
+
+  ngOnInit(){
+    this.adminService.fetchProductoresPendientes();
+  }
 
   afiliacionCards():string{
     const resultado:any = JSON.stringify(this.adminService.productoresPendientes);

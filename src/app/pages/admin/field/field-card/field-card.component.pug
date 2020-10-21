@@ -55,7 +55,7 @@ ng-template(let-modal '#informacionEditableP')
   
 ng-template(let-modal '#informacionEditableC')
   .modal-header
-    h4#modal-basic-title.modal-title Información productor
+    h4#modal-basic-title.modal-title Información Categoria
     button.close(type="button" aria-label="Close" '(click)'="modal.dismiss('Cross click')")
       span(aria-hidden="true") &times;
   .modal-body
@@ -68,11 +68,24 @@ ng-template(let-modal '#informacionEditableC')
   .modal-footer
     button.btn.btn-outline-dark(type='button' '(click)'="modal.close('Submit')") Actualizar
 
+ng-template(let-modal '#top')
+  .modal-header
+    h4#modal-basic-title.modal-title {{this.title}}
+  .modal-body
+    
+    .field-card('*ngFor'='let elemento of this.card.campo')
+      .field-card__text
+        .field-card__title
+          span {{elemento.title}}
+        .field-card__subtitle
+          span {{elemento.subtitle}}
+          
+  .modal-footer
       
 .field-card
-  .field-card__image('(click)'='this.mostrarInfo(informacionEditableP, informacionEditableC)')
+  .field-card__image('(click)'='this.mostrarInfo(informacionEditableP, informacionEditableC, top)')
     img('[src]'='this.imgUrl')
-  .field-card__text('(click)'='this.mostrarInfo(informacionEditableP, informacionEditableC)')
+  .field-card__text('(click)'='this.mostrarInfo(informacionEditableP, informacionEditableC, top)')
     .field-card__title
       span {{this.title}}
     .field-card__subtitle

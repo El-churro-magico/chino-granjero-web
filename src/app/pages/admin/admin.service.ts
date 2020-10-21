@@ -8,19 +8,34 @@ export class AdminService{
 
   top:{
     tipo:string,
-    campo:any
+    campo:any[] // Aqui se guardan los 10 productos o 10 clientes
   }[]=[
     {
       tipo:'Productos más vendidos',
+      campo:[
+        {
+          title:'Producto A',
+          subtitle: '100'
+        }
+      ]
     },
     {
-      tipo:'Productos con más ganancias'
+      tipo:'Productos con más ganancias',
+      campo:[
+        {
+          title: 'Producto A',
+          subtitle: '100'
+        }
+      ]
     },
     {
-      tipo:"Productos más vendidos por productor"
-    },
-    {
-      tipo:"Clientes con más compras"
+      tipo:"Clientes con más compras",
+      campo:[
+        {
+          title:'Don Juan',
+          subtitle: '40'
+        }
+      ]
     }
   ]
 
@@ -91,4 +106,72 @@ export class AdminService{
   }];
 
   constructor(){}
+
+  fetchProductoresPendientes(){
+    this.productoresPendientes = [];
+    const data = {};
+    fetch('http://25.83.43.98:1234'+'/api/Affilliation',{
+      method:'GET',
+      mode:'cors',
+      headers:{
+        'Content-Type':'application/json'
+      }
+    }).then(response=>{
+      if(!response.ok){
+        throw Error(response.statusText);
+      }
+      return response;
+    }).then(response=>{
+      response.json().then(json=>{
+        // Logica aqui
+        this.productoresPendientes = json;
+        console.log(this.productoresPendientes);
+      })
+    }).catch(error=>{
+      console.log(error);
+    })
+
+  }
+
+  fetchTop(){  // Se trae el top de la base de datos y lo guarda
+    console.log('Trayendose el top...');
+
+    const data = {};
+    /*this.top={};
+
+    // Fetch para los productos mas vendidos
+    fetch('http://25.83.43.98:1234'+'/api/Producer/top10soldproducts',{
+      method:'POST',
+      mode:'cors',
+      body:JSON.stringify(data),
+      headers:{
+        'Content-Type':'application/json'
+      }
+    }).then(response=>{
+      if(!response.ok){
+        throw Error(response.statusText);
+      }
+      return response;
+    }).then(response=>{
+      response.json().then(json=>{
+        // Logica aqui
+        top = {
+          ...tops,  // Los pasados
+          { // El nuevo
+            tipo:'Productos más vendidos',
+            campo:[
+              {
+                title:'Producto A',
+                subtitle: '100'
+              }
+            ]
+          }
+        }
+      })
+    }).catch(error=>{
+      console.log(error);
+
+    })*/
+
+  }
 }

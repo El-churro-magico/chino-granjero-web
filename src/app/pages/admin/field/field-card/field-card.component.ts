@@ -21,6 +21,10 @@ export class FieldCardComponent implements OnInit, OnChanges{
   closeResult:string;
   razonRechazo:string;
 
+  // Para los tops
+  topSeleccionado:any;
+
+
   constructor(
     private modalService: NgbModal,
     private adminService: AdminService
@@ -39,6 +43,9 @@ export class FieldCardComponent implements OnInit, OnChanges{
       this.subtitle = this.card.id;
       this.imgUrl = this.card.imgUrl;
       this.id = this.card.id;
+    }else if(this.type=='top'){
+      this.title = this.card.tipo
+      this.adminService.fetchTop();
     }
   }
 
@@ -78,12 +85,14 @@ export class FieldCardComponent implements OnInit, OnChanges{
 
   }
 
-  mostrarInfo(informacionEditableP, informacionEditableC){
+  mostrarInfo(informacionEditableP, informacionEditableC, top){
     let content;
-    if(this.type=='productores'||this.type=='solicitud'){
+    if(this.type=='productores'||this.type=='afiliacion'){
       content = informacionEditableP;
     }else if(this.type=='categorias'){
       content = informacionEditableC;
+    }else if(this.type=='top'){
+      content = top;
     }
 
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {

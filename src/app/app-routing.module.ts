@@ -10,8 +10,8 @@ const routes: Routes = [
     path: 'pages',
     loadChildren: () => import('./pages/pages.module').then(mod => mod.PagesModule)
   },
-  { path: '', redirectTo: 'auth', pathMatch: 'full' },
-  { path: '**', redirectTo: 'auth' }
+  //{ path: '', redirectTo: 'auth', pathMatch: 'full' },
+  //{ path: '**', redirectTo: 'auth' }
 ];
 
 @NgModule({

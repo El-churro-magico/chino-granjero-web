@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { SelectorData } from '../selectorData';
+import { SelectorData } from '../SelectorData';
 
 @Component({
   selector: 'selector',

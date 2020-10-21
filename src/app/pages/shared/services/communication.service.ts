@@ -15,7 +15,7 @@ export class CommunicationService {
   ipAddress: string="25.83.43.98";
   port: string="1234";
 
-  token: String = '';
+  token: string = '';
   location: number = 20101;
   profile: Profile;
   
@@ -27,7 +27,15 @@ export class CommunicationService {
     identificationCard:'1 1111 1111',
     address: 'Del palo de mango, 500mts al norte'
   }
+
+  tmpProducer: Producer;
+
   productores: Producer[];
+
+  cart: {
+    product:Product,
+    quantity:number
+  }[]=[];
 
   constructor(private crPcdService: CrPcdService) { }
 
@@ -73,10 +81,10 @@ export class CommunicationService {
 
   limpiar(){
     this.tmpUser = null;
-    /*this.productores = null;
-    this.productorCargado = null;
-    this.carrito = null;
-    this.notificaciones = null;*/
+    this.productores = null;
+    this.tmpProducer = null;
+    this.cart = null;
+    //this.notificaciones = null;
     this.location =null;
     this.token = null;
   }

@@ -1,3 +1,5 @@
+import { ReceiptData } from './ReceiptData'
+
 export interface CardInterface {
     newProduct: boolean;
     productID: string;
@@ -9,4 +11,7 @@ export interface CardInterface {
     ETA: string;
     description: string;
     category: string;
+    unit: string;
+    availability: number;
+    receiptData: ReceiptData;
 }

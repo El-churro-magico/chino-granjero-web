@@ -1,14 +1,14 @@
 <mat-toolbar class="mainContainer">
-    <button class="menuButton">
+    <button class="menuButton" (click)="onActionClicked('headerProfile')">
         <img src="../../../../assets/icons/main-menu.svg">
     </button>
     <img class="logo" src="../../../../assets/logos/logo-small.svg">
     <div class="buttonContainer">
-        <button class="button buttonFirst">
+        <button class="button buttonFirst" (click)="onActionClicked('headerButtonFirst')">
             <img class="icon" src="{{ buttonFirst.icon }}">
             {{ buttonFirst.text }}
         </button>
-        <button class="button buttonSecond">
+        <button class="button buttonSecond" (click)="onActionClicked('headerButtonSecond')">
             <img class="icon" src="{{ buttonSecond.icon }}">
             {{ buttonSecond.text }}
         </button>

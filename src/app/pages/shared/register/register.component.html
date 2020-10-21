@@ -1,18 +1,19 @@
 <div class="mainContainer">
     <mat-card class="card">
-        <button class="addPicture">
-            <img class="clickableIcon" src="../../../../assets/icons/add-profile-picture.svg">
+        <input id="inputFile" type="file" accept="image/*" name="image" style="display: none;" (change)="onFileChanged($event)" #inputFile>
+        <button class="addPicture" (click)="inputFile.click()">
+            <img class="clickableIcon" src="{{ iconSource }}">
         </button>
         <div class="bottomContainer">
             <form>
                 <mat-form-field class="inputLong">
-                    <input matInput #message placeholder="Nombre" [(ngModel)]="name">
+                    <input matInput #message name="name" placeholder="Nombre" [(ngModel)]="name">
                 </mat-form-field>
                 <mat-form-field class="inputLong">
-                    <input matInput #message placeholder="Apellidos" [(ngModel)]="lastNames">
+                    <input matInput #message name="lastNames" placeholder="Apellidos" [(ngModel)]="lastNames">
                 </mat-form-field>
                 <mat-form-field class="inputLong">
-                    <input matInput #message placeholder="Cedula" [(ngModel)]="identification">
+                    <input matInput #message name="idCard" placeholder="Cedula" [(ngModel)]="identification">
                 </mat-form-field>  
             </form>
             <div class="horizontalContainer">
@@ -34,10 +35,15 @@
                     </selector>
                 </div>
                 <div class="verticalContainer">
-                    <input type="date" matInput #message placeholder="DD/MM/YYYY">
-                    <input type="number" matInput #message placeholder="000000000">
+                    <mat-form-field class="inputLong">
+                        <input matInput type="date" placeholder="DD/MM/YYYY" name="birthDate" [(ngModel)]="birthDate">
+                    </mat-form-field>
+                    <mat-form-field class="inputLong">
+                        <input matInput type="text" #message placeholder="Teléfono" name="phoneNumber" [(ngModel)]="phoneNumber">
+                    </mat-form-field>
                 </div>
             </div>
+            <button class="signUpButton" (click)="validateInput()">Registrar</button>
         </div>
     </mat-card>
 </div>

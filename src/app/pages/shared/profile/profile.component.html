@@ -1,6 +1,6 @@
 <mat-card *ngIf="!edit" class="profileCard">
     <div class="header">
-        <button class="returnButton">
+        <button class="returnButton" (click)="onActionClicked('hidePopUp')">
             <img src="../../../../assets/icons/return.svg">
         </button>
         <button class="editButton" (click)="enableEdit()">

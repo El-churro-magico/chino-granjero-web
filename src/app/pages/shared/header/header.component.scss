@@ -1,5 +1,4 @@
 .mainContainer {
-    position: fixed;
     display: flex;
     justify-content: space-between;
     height: 70px;
@@ -10,6 +9,10 @@
     outline: none;
     cursor: pointer;
     background-color: transparent;
+}
+
+.menuButton:hover {
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .logo {
@@ -43,7 +46,7 @@
     color: #41A420;
 }
 
-.buttonFirst:active {
+.buttonFirst:hover {
     background-color: rgba(65, 164, 32, 0.2);
 }
 
@@ -51,6 +54,6 @@
     color: #E3242B;
 }
 
-.buttonSecond:active {
+.buttonSecond:hover {
     background-color: rgba(227, 36, 43, 0.2);;
 }

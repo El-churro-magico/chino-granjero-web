@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CrPcdService } from 'cr-pcd';
 
 import { ProfileData } from '../ProfileData';
-import { SelectorData } from '../selectorData';
+import { SelectorData } from '../SelectorData';
+import { EventData } from '../EventData';
 
 @Component({
   selector: 'profile',
@@ -11,6 +12,7 @@ import { SelectorData } from '../selectorData';
 })
 export class ProfileComponent implements OnInit {
   @Input() profileData: ProfileData;
+  @Output() raiseEvent = new EventEmitter<EventData>();
 
   edit: boolean = false;
 
@@ -86,4 +88,10 @@ export class ProfileComponent implements OnInit {
     this.district = $event.name;
   }
 
+  onActionClicked(event: string) {
+    this.raiseEvent.emit({
+      eventID: event,
+      attached: null
+    });
+  }
 }

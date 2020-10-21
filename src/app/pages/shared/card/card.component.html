@@ -1,8 +1,8 @@
 <mat-card *ngIf="isProduct" class="card">
-    <img mat-card-image class="image" src="{{ cardData.imageURL }}" />
+    <img mat-card-image class="image" src="{{ cardData.imageURL }}" (click)="onActionClicked('productDetails')"/>
     <mat-card-content class="bottomContainer">
         <div>
-            <h1 class="titleShort">{{ cardData.title }}</h1>
+            <h1 class="titleShort" (click)="onActionClicked('productDetails')">{{ cardData.title }}</h1>
         </div>
         <div>
             <score [score]="cardData.rating"></score>
@@ -11,10 +11,10 @@
 </mat-card>
 
 <mat-card *ngIf="isProducer" class="card">
-    <img mat-card-image class="image" src="{{ cardData.imageURL }}" />
+    <img mat-card-image class="image" src="{{ cardData.imageURL }}" (click)="onActionClicked('producerDetails')"/>
     <mat-card-content class="bottomContainer">
         <div>
-            <h1 class="titleShort">{{ cardData.title }}</h1>
+            <h1 class="titleShort" (click)="onActionClicked('producerDetails')">{{ cardData.title }}</h1>
         </div>
         <div>
             <score [score]="cardData.rating"></score>
@@ -23,20 +23,20 @@
 </mat-card>
 
 <mat-card *ngIf="isOrder" class="card">
-    <img mat-card-image class="image" src="{{ cardData.imageURL }}" />
+    <img mat-card-image class="image" src="{{ cardData.imageURL }}" (click)="onActionClicked('receipt')"/>
     <mat-card-content class="bottomContainer">
         <div>
-            <h1 class="titleLong">{{ cardData.title }}</h1>
+            <h1 class="titleShort" (click)="onActionClicked('receipt')">{{ cardData.receiptData.receiptID }}</h1>
         </div>
         <div class="alignEnd">
-            <h4 class="time">{{ cardData.ETA }}</h4>
+            <h4 class="time">{{ cardData.receiptData.time }}</h4>
         </div>
     </mat-card-content>
 </mat-card>
 
-<mat-card *ngIf="newProduct" class="card newProduct">
+<mat-card *ngIf="newProduct" class="card newProduct" (click)="onActionClicked('newProduct')">
     <div class="newProductContainer">
         <img mat-card-image class="addProduct" src="../../../../assets/icons/add-product-picture.svg" />
-        <h4 class="tag">Add Product</h4>
+        <h4 class="tag">Añadir producto</h4>
     </div>
 </mat-card>

@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { ProductDetails } from '../ProductDetails'
-import { SelectorData } from '../selectorData';
+import { CardInterface } from '../CardInterface';
+import { SelectorData } from '../SelectorData';
+import { EventData } from '../EventData';
 
 @Component({
   selector: 'product-details',
@@ -9,10 +10,11 @@ import { SelectorData } from '../selectorData';
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
-  @Input() productDetails: ProductDetails;
+  @Input() cardData: CardInterface;
   @Input() producerView: boolean;
   @Input() categories: SelectorData[];
   @Input() units: SelectorData[];
+  @Output() raiseEvent = new EventEmitter<EventData>();
 
   newProduct: boolean = false;
 
@@ -31,19 +33,26 @@ export class ProductDetailsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    if(this.productDetails === undefined) {
+    if(this.cardData === undefined) {
       this.newProduct = true;
     }
     else {
-      this.ID = this.productDetails.productID;
-      this.name = this.productDetails.name;
-      this.imageURL = this.productDetails.imageURL;
-      this.description = this.productDetails.description;
-      this.category = this.productDetails.category;
-      this.unit = this.productDetails.unit;
-      this.availability = this.productDetails.availability;
+      this.ID = this.cardData.productID;
+      this.name = this.cardData.title;
+      this.imageURL = this.cardData.imageURL;
+      this.description = this.cardData.description;
+      this.category = this.cardData.category;
+      this.unit = this.cardData.unit;
+      this.availability = this.cardData.availability;
     }
     console.log(this.newProduct);
+  }
+
+  onActionClicked(event: string) {
+    this.raiseEvent.emit({
+      eventID: event,
+      attached: null
+    });
   }
 
 }

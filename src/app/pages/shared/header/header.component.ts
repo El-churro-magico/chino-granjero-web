@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
+import { EventData } from '../../shared/EventData';
 import { ButtonInterface } from '../ButtonInterface';
 
 @Component({
@@ -9,7 +10,8 @@ import { ButtonInterface } from '../ButtonInterface';
 })
 export class HeaderComponent implements OnInit {
   @Input() headerButtons: ButtonInterface[];
-  
+  @Output() raiseEvent = new EventEmitter<EventData>();
+
   buttonFirst: ButtonInterface;
   buttonSecond: ButtonInterface;
 
@@ -20,4 +22,10 @@ export class HeaderComponent implements OnInit {
     this.buttonSecond = this.headerButtons[1];
   }
 
+  onActionClicked(event: string) {
+    this.raiseEvent.emit({
+      eventID: event,
+      attached: null
+    });
+  }
 }

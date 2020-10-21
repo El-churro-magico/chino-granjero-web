@@ -4,11 +4,23 @@ import { PagesComponent } from './pages.component';
 
 const routes: Routes = [
   {
+    path: 'client',
+    loadChildren: () => import('./client/client.module').then(mod => mod.ClientModule)
+  },
+  {
+    path: 'producer',
+    loadChildren: () => import('./producer/producer.module').then(mod => mod.ProducerModule)
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(mod => mod.AdminModule)
+  }
+  /*{
     path: '',
     component: PagesComponent,
     children: [
       {
-        path: 'view',
+        path: '',
         redirectTo: ''
       },
       {
@@ -21,7 +33,7 @@ const routes: Routes = [
         redirectTo: 'view'
       }
     ]
-  }
+  }*/
 ];
 
 @NgModule({

@@ -1,5 +1,5 @@
 .card {
-    min-height: 600px;
+    min-height: 400px;
     max-height: 800px;
     width: 650px;
     padding: 0px;
@@ -9,6 +9,7 @@
 .mainContainer {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
     margin: 10px;
 }

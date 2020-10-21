@@ -26,6 +26,7 @@
 }
 
 .titleShort {
+    margin: 0px;
     font-size: 18px;
     font-weight: bold;
     line-height: 10px;
@@ -35,6 +36,7 @@
 }
 
 .titleLong {
+    margin: 0px;
     font-size: 18px;
     font-weight: bold;
     line-height: 10px;
@@ -44,18 +46,19 @@
 }
 
 .time {
-    width: 10px;
+    width: 40px;
     line-height: 10px;
     margin-right: 0px;
     align-self: flex-end;
 }
 
 .alignEnd {
-    align-self: flex-end;
+    //align-self: flex-end;
 }
 
 .newProduct {
     background-color: #C4C4C4;
+    cursor: pointer;
     width: 300px;
     height: 160px;
 }
@@ -70,8 +73,6 @@
 }
 
 .addProduct {
-    //display: block;
-    //margin: auto;
     max-width: 100px;
     max-height: 100px;
     margin-bottom: 0px;

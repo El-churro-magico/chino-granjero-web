@@ -26,18 +26,18 @@ export class LoginComponent implements OnInit {
     this.activatedRoute.data.subscribe(data => {
       this.view = data.view;
     });
+    this.fetchProducersByLocation();
+    //console.log(this.fetchProducersByLocation());
   }
 
   login() {
-    if(this.validate(this.userID, this.password))
-    {
+    if(this.validate(this.userID, this.password)) {
       //var alert;
       console.log(this.userID+"\n"+this.password);
 
       let data= {password:this.password}
 
-
-      fetch('http://' + this.comService.ipAddress + ':' + this.comService.port + '/api/SignIn/client/' + this.userID,{
+      fetch('http://' + this.comService.ipAddress + ':' + this.comService.port + '/api/SignIn/'+ this.view.toLocaleLowerCase() +'/' + this.userID,{   //Client Producer
         method:'POST',
         mode: 'cors',
         body: JSON.stringify(data),
@@ -52,10 +52,15 @@ export class LoginComponent implements OnInit {
       }).then(async (response)=>{
          response.json().then((json)=>{
            // logica aqui
+           console.log(json);
            this.comService.token = json;
-           return this.fetchProfile();
+           console.log(this.comService.token);
+           this.fetchProfile();
          });
-      }).catch(async (error) => {  // Agarran los errores
+      }).catch(async (error) => {
+
+        console.log("Contrase")
+        // Agarran los errores
           /*alert = await this.alertController.create({
           header: 'Alert',
           message:'Error: El usuario o contrasena proporcionado es incorrecto!',
@@ -76,30 +81,32 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  async fetchProfile()
-  {
+  async fetchProfile() {
     var alert;
-    let data={token:this.comService.token}
-    fetch('http://'+this.comService.ipAddress+':'+this.comService.port+'/api/Client/getUserByUserName/'+this.userID,{
-      method:'POST',
+    let data={token:this.comService.token};
+    console.log(this.comService.token);
+    fetch('http://' + this.comService.ipAddress + ':' + this.comService.port + '/api/Client/getUserByUserName/' + this.userID,{
+      method: 'POST',
       mode: 'cors',
       body:JSON.stringify(data),
-      headers:{
+      headers: {
         'Content-Type':'application/json'
       }
     }).then(response =>{// Maneja los errores
-      if(!response.ok){
+      if(!response.ok) {
         throw Error(response.statusText);
       }
       return response;
     }).then((response)=>{
+      console.log(response);
        response.json().then(json=>{
+         console.log(json);
          // logica aqui
          this.comService.profile = json;
          this.fetchProducersByLocation();
-         this.comService.location=this.comService.locationNumber(this.comService.profile.province,this.comService.profile.canton,this.comService.profile.district)
-         this.userID='';
-         this.password='';
+         this.comService.location = this.comService.locationNumber(this.comService.profile.province,this.comService.profile.canton,this.comService.profile.district)
+         this.userID = '';
+         this.password = '';
          //this.router.navigate(['/home']);
        })
     })
@@ -122,6 +129,7 @@ export class LoginComponent implements OnInit {
     }).then((response)=>{
        response.json().then(json=>{
          // logica aqui
+         console.log(json);
          this.comService.productores = json.map(element=>{
            return {
              name: element.businessName,

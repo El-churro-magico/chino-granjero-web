@@ -34,7 +34,7 @@ import { ReceiptComponent } from './receipt/receipt.component';
     CardComponent,
     ProductDetailsComponent,
     ProfileComponent,
-    ReceiptComponent
+    ReceiptComponent,
   ],
   imports: [
     CommonModule,
@@ -69,7 +69,7 @@ import { ReceiptComponent } from './receipt/receipt.component';
     CardComponent,
     ProductDetailsComponent,
     ProfileComponent,
-    ReceiptComponent
+    ReceiptComponent,
   ]
 })
 export class SharedModule { }

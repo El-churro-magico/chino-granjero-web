@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { DisplayerData } from '../DisplayerData';
 import { ReceiptData } from '../ReceiptData';
+import { EventData } from '../EventData';
 
 @Component({
   selector: 'receipt',
@@ -10,6 +11,7 @@ import { ReceiptData } from '../ReceiptData';
 })
 export class ReceiptComponent implements OnInit {
   @Input() receiptData: ReceiptData;
+  @Output() raiseEvent = new EventEmitter<EventData>();
 
   productsList: DisplayerData[];
   total: number = 0;
@@ -29,6 +31,13 @@ export class ReceiptComponent implements OnInit {
       total += subtotal;
     }
     this.total = total;
+  }
+
+  onActionClicked(event: string) {
+    this.raiseEvent.emit({
+      eventID: event,
+      attached: null
+    });
   }
 
 }

@@ -1,7 +1,7 @@
 <mat-card *ngIf="producerView" class="card">
     <div class="mainContainer">
         <div class="header">
-            <button class="button">
+            <button class="button" (click)="onActionClicked('hidePopUp')">
                 <img src="../../../../assets/icons/return.svg">
             </button>
             <input type="text" class="title" [(ngModel)]="name">

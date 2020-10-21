@@ -1,1 +1,30 @@
-<p>producer works!</p>
+<div class="layout">
+    <div *ngIf="showSmokeScreenBool" class="smokeScreen">
+        <profile *ngIf="showProfileBool" [profileData]="profileData" (raiseEvent)="clickEvent($event)"></profile>
+        <div class="popUp" *ngIf="showProductDetailsBool">
+            <product-details
+                [cardData]="currentProductDetails"
+                [producerView]="'true'"
+                [categories]="categories"
+                [units]="units"
+                (raiseEvent)="clickEvent($event)"
+            ></product-details>
+        </div>    
+        <div class="popUp" *ngIf="showReceiptDetailsBool">
+            <receipt
+                [receiptData]="currentReceiptDetails"
+                (raiseEvent)="clickEvent($event)"
+            ></receipt>
+        </div>
+    </div>    
+    <header [headerButtons]="headerButtons" (raiseEvent)="clickEvent($event)"></header>
+    <mat-card class="mainCard">
+        <card
+            *ngFor="let card of displayedCards"
+            [cardData]="card"
+            (raiseEvent)="clickEvent($event)"
+        ></card>    
+    </mat-card>
+</div>
+
+

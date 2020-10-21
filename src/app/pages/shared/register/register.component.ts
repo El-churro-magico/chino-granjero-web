@@ -4,7 +4,7 @@ import { ErrorStateMatcher } from '@angular/material/core';
 import { CrPcdService } from 'cr-pcd';
 import { ActivatedRoute } from '@angular/router';
 
-import { SelectorData } from '../selectorData';
+import { SelectorData } from '../SelectorData';
 
 @Component({
   selector: 'register',
@@ -13,16 +13,18 @@ import { SelectorData } from '../selectorData';
 })
 export class RegisterComponent implements OnInit {
   view: string = "";
+  accepted: boolean = true;
+  iconSource: any = "../../../../assets/icons/add-profile-picture.svg";
 
-  imageURL: string;
-  name: string;
-  lastNames: string;
-  identification: string;
-  province: any;
-  canton: any;
-  district: any;
-  birthDate: Date;
-  phoneNumber: string;
+  image: File;
+  name: string = "";
+  lastNames: string = "";
+  identification: string = "";
+  province: string = "";
+  canton: string = "";
+  district: string = "";
+  birthDate: Date = null;
+  phoneNumber: string = "";
 
   provinces: SelectorData[] = [];
   cantons: SelectorData[] = [];
@@ -35,6 +37,21 @@ export class RegisterComponent implements OnInit {
       this.view = data.view;
     });
     this.getProvinces();
+  }
+
+  onFileChanged(event) {
+    this.image = event.target.files[0];
+    let fileReader = new FileReader();
+    try {
+      fileReader.readAsDataURL(event.target.files[0]);
+      fileReader.onload = (_event) => {
+        this.iconSource = fileReader.result;
+      }
+    }
+    catch(err) {
+      this.iconSource = "../../../../assets/icons/add-profile-picture.svg";
+      this.image = null;
+    }
   }
 
   getProvinces() {
@@ -88,7 +105,108 @@ export class RegisterComponent implements OnInit {
     this.district = $event.name;
   }
 
-  validateInput() {
-    
+  validateInput(): boolean {
+    console.log(this.name, this.lastNames, this.identification, this.province, this.canton, this.district, this.identification, this.phoneNumber);
+    this.accepted = true;
+    this.validatePicture();
+    this.validateNames();
+    this.validateID();
+    this.validateLocation();
+    this.validateBirthDate();
+    this.validatePhone();
+    if(this.accepted === true){
+      console.log("Ha sido aceptado");
+      return true;
+    }
+    else {
+      console.log("Error, ha sido rechazado");
+      return false;
+    }
+  }
+
+  validatePicture(): boolean {
+    if(this.image != null) {
+      return true;
+    }
+    else {
+      console.log("Debe subir una imagen de perfil");
+      this.accepted = false;
+      return false;
+    }
+  }
+
+  validateNames(): boolean {
+    if((this.name != "") && (this.lastNames != "")){
+      return true;
+    }
+    else {
+      console.log("Nombre incorrecto");
+      this.accepted = false;
+      return false;
+    }
+  }
+
+  validateID(): boolean {
+    if((this.identification.length === 9) && this.isNumeric(this.identification)){
+      return true;
+    }
+    else {
+      console.log("ID rechazada");
+      this.accepted = false;
+      return false;
+    }
+  }
+
+  isNumeric(value: string): boolean{
+    return !isNaN(Number(value));
+  }
+
+  validateLocation(): boolean {
+    if(this.province != ""){
+      if(this.canton != ""){
+        if(this.district != ""){
+          return true;
+        }
+        else {
+          console.log("Distrito rechazado");
+          this.accepted = false;
+          return false;
+        }
+      }
+      else {
+        console.log("Canton rechazado");
+        this.accepted = false;
+        return false;
+      }
+    }
+    else {
+      console.log("Provincia rechazada");
+      this.accepted = false;
+      return false;
+    }
+  }
+
+  validateBirthDate(): boolean {
+    if(this.birthDate != null) {
+      return true;
+    }
+    else {
+      console.log("Cumpleaños rechazado");
+      this.accepted = false;
+      return false;
+    }
+  }
+
+  validatePhone(): boolean {
+    console.log("Este es el largo del telefono");
+    console.log(this.phoneNumber.length);
+    if((this.phoneNumber.length === 8) && this.isNumeric(this.phoneNumber)) {
+      return true;
+    }
+    else {
+      console.log("Telefono rechazado");
+      this.accepted = false;
+      return false;
+    }
   }
 }

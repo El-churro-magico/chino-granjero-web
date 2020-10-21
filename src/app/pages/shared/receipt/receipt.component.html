@@ -1,7 +1,7 @@
 <mat-card class="card">
     <div class="mainContainer">
         <div class="header">
-            <button class="button">
+            <button class="button" (click)="onActionClicked('hidePopUp')">
                 <img class="icon" src="../../../../assets/icons/close.svg">
             </button>
             <h1 class="title">{{ receiptData.receiptID }}</h1>

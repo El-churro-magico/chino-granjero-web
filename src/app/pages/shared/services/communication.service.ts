@@ -7,6 +7,16 @@ import { Profile } from '../classes/profile';
 import { Producer } from '../classes/producer';
 import { Product } from '../classes/product';
 
+import { ButtonInterface } from '../ButtonInterface';
+import { CardInterface } from '../CardInterface';
+import { DisplayerData } from '../DisplayerData';
+import { OrderInterface } from '../OrderInterface';
+import { ProductDetails } from '../ProductDetails';
+import { ProfileData } from '../ProfileData';
+import { ReceiptData } from '../ReceiptData';
+import { SelectorData } from '../SelectorData';
+import { EventData } from '../EventData';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -36,6 +46,54 @@ export class CommunicationService {
     product:Product,
     quantity:number
   }[]=[];
+
+
+
+
+
+
+
+
+
+  // CLASSES YET TO BE IMPLEMENTED
+  // Profile data
+  profileData: ProfileData = {
+    imageURL: 'https://ichef.bbci.co.uk/news/410/cpsprodpb/162E3/production/_103115809_robbierotten.jpg',
+    role: "Producer",
+    name: "Robbie",
+    surnames: "Rotten",
+    identificationCard: 802156645,
+    birthDate: '10/4/2000',
+    phoneNumber: 89675543,
+    province: "Heredia",
+    canton: "Santa Barbara",
+    district: "Canton de santa barbara",
+    score: 4.5
+  }
+
+  // General
+  categories: SelectorData[] = [
+    {name: "Vegetales", identifier: 0},
+    {name: "Frutas", identifier: 1},
+    {name: "Lacteos", identifier: 2},
+  ];
+
+  units: SelectorData[] = [
+    {name: "Unidad", identifier: 0},
+    {name: "kilogramos", identifier: 1},
+    {name: "Servicio", identifier: 2},
+  ];
+
+
+
+
+
+
+
+
+
+
+
 
   constructor(private crPcdService: CrPcdService) { }
 

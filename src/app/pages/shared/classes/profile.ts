@@ -1,12 +1,18 @@
 export class Profile {
-    identificationCard: number;
-    name: String;
-    lastName: String;
-    province: String;
-    canton: String;
-    district: String;
-    address: String;
-    phone: number;
-    username: String;
-    birthDate: String;
+    cedula: number;
+    name: string;
+    lastName: string;
+    province: string;
+    canton: string;
+    district: string;
+    address: string;
+    phoneN: number;
+    userName: string;
+    birthDate: string;
+    notifications: {
+      producerID: number,
+      clientID: number,
+      message: string,
+      ID: number
+    }[]
 }

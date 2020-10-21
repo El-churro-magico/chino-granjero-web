@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 
 import { CommunicationService } from '../shared/services/communication.service';
 
-import { Profile } from '../shared/classes/profile';
-
 import { ButtonInterface } from '../shared/ButtonInterface';
 import { CardInterface } from '../shared/CardInterface';
 import { DisplayerData } from '../shared/DisplayerData';
@@ -14,21 +12,20 @@ import { SelectorData } from '../shared/SelectorData';
 import { EventData } from '../shared/EventData';
 
 @Component({
-  selector: 'app-producer',
-  templateUrl: './producer.component.html',
-  styleUrls: ['./producer.component.scss']
+  selector: 'app-client',
+  templateUrl: './client.component.html',
+  styleUrls: ['./client.component.scss']
 })
-export class ProducerComponent implements OnInit {
+export class ClientComponent implements OnInit {
   // Show booleans
   showSmokeScreenBool: boolean = false;
   showProfileBool: boolean = false;
   showProductDetailsBool: boolean = false;
   showReceiptDetailsBool: boolean = false;
-  showNewProductBool: boolean = false;
 
   // Header buttons
-  buttonHeaderFirst: ButtonInterface = {text: "Mis productos", icon: '../../../assets/icons/store.svg'};
-  buttonHeaderSecond: ButtonInterface = {text: "Pedidos", icon: '../../../assets/icons/receipt.svg'};
+  buttonHeaderFirst: ButtonInterface = {text: "Ubicacion", icon: '../../../assets/icons/location.svg'};
+  buttonHeaderSecond: ButtonInterface = {text: "Carrito", icon: '../../../assets/icons/cart.svg'};
   headerButtons: ButtonInterface[] = [this.buttonHeaderFirst, this.buttonHeaderSecond];
 
   // Profile data
@@ -140,7 +137,7 @@ export class ProducerComponent implements OnInit {
         }
       })
     }
-  } 
+  }
 
   extractProfile() {
     this.profileData = {
@@ -149,8 +146,6 @@ export class ProducerComponent implements OnInit {
       name: this.comService.profile.name,
       surnames: this.comService.profile.lastName,
       identificationCard: this.comService.profile.cedula,
-      birthDate: this.comService.profile.birthDate,
-      phoneNumber: this.comService.profile.phoneN,
       province: this.comService.profile.province,
       canton: this.comService.profile.canton,
       district: this.comService.profile.district,
@@ -176,12 +171,7 @@ export class ProducerComponent implements OnInit {
         break;
       }
       // Profile Events
-
-      // Card Events
-      case 'newProduct': {
-        this.newProduct();
-        break;
-      }
+      
       case 'productDetails': {
         this.showProductDetails($event);
         break;
@@ -212,12 +202,6 @@ export class ProducerComponent implements OnInit {
     this.displayedCards = this.receipts;
   }
 
-  newProduct() {
-    this.showSmokeScreenBool = true;
-    this.currentProductDetails = undefined;
-    this.showProductDetailsBool = true;
-  }
-
   showProductDetails(event: EventData) {
     this.showSmokeScreenBool = true;
     this.currentProductDetails = event.attached;
@@ -236,7 +220,5 @@ export class ProducerComponent implements OnInit {
     this.showProfileBool = false;
     this.showProductDetailsBool = false;
     this.showReceiptDetailsBool = false;
-    this.showNewProductBool = false;
   }
-
 }

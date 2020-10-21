@@ -2,7 +2,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { CardInterface } from '../CardInterface';
 import { EventData } from '../EventData';
-import { ReceiptData } from '../ReceiptData';
 
 @Component({
   selector: 'card',

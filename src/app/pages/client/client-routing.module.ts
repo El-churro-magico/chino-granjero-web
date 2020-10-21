@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ClientComponent } from './client.component';
 
 const routes: Routes = [
-  /*{
+  {
     path: 'home',
-    component: ClientCom
+    component: ClientComponent
   },
   {
     path: '',
@@ -13,7 +14,7 @@ const routes: Routes = [
   {
     path: '**',
     redirectTo: 'home'
-  }*/
+  }
 ];
 
 @NgModule({

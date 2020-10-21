@@ -1,4 +1,3 @@
-import { Time } from '@angular/common';
 import { DisplayerData } from './DisplayerData';
 
 export interface ReceiptData {

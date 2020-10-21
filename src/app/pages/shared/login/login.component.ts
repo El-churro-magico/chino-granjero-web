@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {HttpClient} from '@angular/common/http';
 
 import { CommunicationService } from '../services/communication.service';
@@ -20,7 +20,11 @@ export class LoginComponent implements OnInit {
   userID: string = "";
   password: string = "";
 
-  constructor(private activatedRoute: ActivatedRoute, private comService: CommunicationService,) { }
+  router: Router;
+
+  constructor(private activatedRoute: ActivatedRoute, private comService: CommunicationService, router: Router) {
+    this.router = router;
+  }
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(data => {
@@ -107,7 +111,7 @@ export class LoginComponent implements OnInit {
          this.comService.location = this.comService.locationNumber(this.comService.profile.province,this.comService.profile.canton,this.comService.profile.district)
          this.userID = '';
          this.password = '';
-         //this.router.navigate(['/home']);
+         this.router.navigateByUrl('/pages/producer/home');
        })
     })
   }
@@ -166,4 +170,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  navigateTo() {
+    this.router.navigateByUrl('/pages/producer/home');
+  }
 }

@@ -130,7 +130,62 @@ export class AdminService{
     }).catch(error=>{
       console.log(error);
     })
+  }
 
+  fetchCategorias(){
+    this.categorias = [];
+    fetch('http://25.83.43.98:1234'+'/api/Categories',{
+      method:'GET',
+      mode:'cors',
+      headers:{
+        'Content-Type':'application/json'
+      }
+    }).then(response=>{
+      if(!response.ok){
+        throw Error(response.statusText);
+      }
+      return response;
+    }).then(response=>{
+      response.json().then(json=>{
+        // Logica aqui
+        this.categorias = json.map(element=>{
+          return {
+            id:element.ID,
+            name:element.name,
+            imgUrl:''
+          }
+        });
+        console.log(json);
+
+        console.log(this.productoresPendientes);
+      })
+    }).catch(error=>{
+      console.log(error);
+    })
+  }
+
+  fetchProductores(){
+    this.productores = [];
+    fetch('http://25.83.43.98:1234'+'/api/Producer/all',{
+      method:'GET',
+      mode:'cors',
+      headers:{
+        'Content-Type':'application/json'
+      }
+    }).then(response=>{
+      if(!response.ok){
+        throw Error(response.statusText);
+      }
+      return response;
+    }).then(response=>{
+      response.json().then(json=>{
+        // Logica aqui
+        this.productores = json;
+        console.log(this.productoresPendientes);
+      })
+    }).catch(error=>{
+      console.log(error);
+    })
   }
 
   fetchTop(){  // Se trae el top de la base de datos y lo guarda

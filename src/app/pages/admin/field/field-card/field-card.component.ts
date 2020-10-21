@@ -74,13 +74,67 @@ export class FieldCardComponent implements OnInit, OnChanges{
         console.log(this.closeResult);
         if(this.closeResult == 'Submit'){
           console.log('Enviar '+this.razonRechazo+' a '+this.id+' en el rest');
+          const data = {
+            cedula: this.id,
+            name: '',
+            lastName: '',
+            businessName: '',
+            province: '',
+            canton: '',
+            district: '',
+            address: '',
+            phoneN: 0,
+            birthDate: '',
+            sinpeN: 0,
+            comment: this.razonRechazo,
+            status: 'DENIED',
+            password: ''
+          };
+          fetch('http://25.83.43.98:1234'+'/api/Affilliation/updateAffiliation',{
+            method:'PUT',
+            mode:'cors',
+            body:JSON.stringify(data),
+            headers:{
+              'Content-Type':'application/json'
+            }
+          }).then(response=>{
+            if(!response.ok){
+              throw Error(response.statusText);
+            }
+            return response;
+          }).then(response=>{
+            response.json().then(json=>{
+              // Logica aqui
+              this.eliminarCard();
+            })
+          }).catch(error=>{
+            console.log(error);
+          })
           this.eliminarCard();
         }
       }, (reason) => {
         this.closeResult = `${this.getDismissReason(reason)}`;
       });
-    }else{
-      this.eliminarCard();
+    }else if(this.type=='productores'){
+      fetch('http://25.83.43.98:1234'+'/api/Producer/'+this.id,{
+        method:'DELETE',
+        mode:'cors',
+        headers:{
+          'Content-Type':'application/json'
+        }
+      }).then(response=>{
+        if(!response.ok){
+          throw Error(response.statusText);
+        }
+        return response;
+      }).then(response=>{
+        response.json().then(json=>{
+          // Logica aqui
+          this.eliminarCard();
+        })
+      }).catch(error=>{
+        console.log(error);
+      })
     }
 
   }
@@ -94,12 +148,35 @@ export class FieldCardComponent implements OnInit, OnChanges{
     }else if(this.type=='top'){
       content = top;
     }
-
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
       this.closeResult = `${result}`;
       console.log(this.closeResult);
-      if(this.closeResult == 'Submit'){
+      if(this.closeResult == 'Submit' && this.type=='categorias'){
         console.log('Enviar nueva info'+' de '+this.id+' al rest');
+        const data = {
+          name: this.card.name,
+          ID: this.card.id
+        }
+        fetch('http://25.83.43.98:1234'+'/api/Categories/'+this.id,{
+          method:'PUT',
+          mode:'cors',
+          body:JSON.stringify(data),
+          headers:{
+            'Content-Type':'application/json'
+          }
+        }).then(response=>{
+          if(!response.ok){
+            throw Error(response.statusText);
+          }
+          return response;
+        }).then(response=>{
+          response.json().then(json=>{
+            // Logica aqui
+            this.adminService.fetchCategorias();
+          })
+        }).catch(error=>{
+          console.log(error);
+        })
       }
     }, (reason) => {
       this.closeResult = `${this.getDismissReason(reason)}`;
@@ -117,7 +194,43 @@ export class FieldCardComponent implements OnInit, OnChanges{
   }
 
   confirm(){
-    console.log('Confirm la soliciutd');
-    this.eliminarCard();
+    console.log('Confirm la solicitud');
+    const data = {
+      cedula: this.id,
+      name: '',
+      lastName: '',
+      businessName: '',
+      province: '',
+      canton: '',
+      district: '',
+      address: '',
+      phoneN: 0,
+      birthDate: '',
+      sinpeN: 0,
+      comment: 'Delicioso',
+      status: 'ACCEPTED',
+      password: ''
+    };
+    fetch('http://25.83.43.98:1234'+'/api/Affilliation/updateAffiliation',{
+      method:'PUT',
+      mode:'cors',
+      body:JSON.stringify(data),
+      headers:{
+        'Content-Type':'application/json'
+      }
+    }).then(response=>{
+      if(!response.ok){
+        throw Error(response.statusText);
+      }
+      return response;
+    }).then(response=>{
+      response.json().then(json=>{
+        // Logica aqui
+        this.eliminarCard();
+      })
+    }).catch(error=>{
+      console.log(error);
+    })
+
   }
 }

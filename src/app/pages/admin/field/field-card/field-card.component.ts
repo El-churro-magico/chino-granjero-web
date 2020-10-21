@@ -45,7 +45,7 @@ export class FieldCardComponent implements OnInit, OnChanges{
       this.id = this.card.id;
     }else if(this.type=='top'){
       this.title = this.card.tipo
-      this.adminService.fetchTop();
+      //this.adminService.fetchTop();
     }
   }
 
@@ -177,6 +177,28 @@ export class FieldCardComponent implements OnInit, OnChanges{
         }).catch(error=>{
           console.log(error);
         })
+      } else if (this.closeResult=='Submit' && this.type=='productores'){
+        const data = this.card;
+        fetch('http://25.83.43.98:1234'+'/api/Producer/'+this.id,{
+          method:'PUT',
+          mode:'cors',
+          body:JSON.stringify(data),
+          headers:{
+            'Content-Type':'application/json'
+          }
+        }).then(response=>{
+          if(!response.ok){
+            throw Error(response.statusText);
+          }
+          return response;
+        }).then(response=>{
+          response.json().then(json=>{
+            // Logica aqui
+            this.adminService.fetchProductores();
+          })
+        }).catch(error=>{
+          console.log(error);
+        })
       }
     }, (reason) => {
       this.closeResult = `${this.getDismissReason(reason)}`;
@@ -231,6 +253,5 @@ export class FieldCardComponent implements OnInit, OnChanges{
     }).catch(error=>{
       console.log(error);
     })
-
   }
 }

@@ -18,8 +18,9 @@ export class AdminPage implements OnInit{
 
   ngOnInit(){
     this.adminService.fetchProductoresPendientes();
-    //this.adminService.fetchProductores();
+    this.adminService.fetchProductores();
     this.adminService.fetchCategorias();
+    this.adminService.fetchTop();
   }
 
   afiliacionCards():string{

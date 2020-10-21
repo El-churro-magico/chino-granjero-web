@@ -9,35 +9,7 @@ export class AdminService{
   top:{
     tipo:string,
     campo:any[] // Aqui se guardan los 10 productos o 10 clientes
-  }[]=[
-    {
-      tipo:'Productos más vendidos',
-      campo:[
-        {
-          title:'Producto A',
-          subtitle: '100'
-        }
-      ]
-    },
-    {
-      tipo:'Productos con más ganancias',
-      campo:[
-        {
-          title: 'Producto A',
-          subtitle: '100'
-        }
-      ]
-    },
-    {
-      tipo:"Clientes con más compras",
-      campo:[
-        {
-          title:'Don Juan',
-          subtitle: '40'
-        }
-      ]
-    }
-  ]
+  }[]=[];
 
   categorias:{
     name:string,
@@ -166,7 +138,7 @@ export class AdminService{
 
   fetchProductores(){
     this.productores = [];
-    fetch('http://25.83.43.98:1234'+'/api/Producer/all',{
+    fetch('http://25.83.43.98:1234'+'/api/Producer',{
       method:'GET',
       mode:'cors',
       headers:{
@@ -192,13 +164,12 @@ export class AdminService{
     console.log('Trayendose el top...');
 
     const data = {};
-    /*this.top={};
+    this.top=[];
 
     // Fetch para los productos mas vendidos
-    fetch('http://25.83.43.98:1234'+'/api/Producer/top10soldproducts',{
-      method:'POST',
+    fetch('http://25.83.43.98:1234'+'/api/Producer/getTops/SP',{
+      method:'GET',
       mode:'cors',
-      body:JSON.stringify(data),
       headers:{
         'Content-Type':'application/json'
       }
@@ -210,23 +181,54 @@ export class AdminService{
     }).then(response=>{
       response.json().then(json=>{
         // Logica aqui
-        top = {
-          ...tops,  // Los pasados
-          { // El nuevo
+        console.log(json);
+        this.top = [
+          ...this.top,
+          {
             tipo:'Productos más vendidos',
-            campo:[
-              {
-                title:'Producto A',
-                subtitle: '100'
+            campo:json.map(element=>{
+              return {
+                title:element.name,
+                subtitle:element.quantity
               }
-            ]
+            })
           }
-        }
+        ];
       })
     }).catch(error=>{
       console.log(error);
+    })
 
-    })*/
+    fetch('http://25.83.43.98:1234'+'/api/Producer/getTops/CG',{
+      method:'GET',
+      mode:'cors',
+      headers:{
+        'Content-Type':'application/json'
+      }
+    }).then(response=>{
+      if(!response.ok){
+        throw Error(response.statusText);
+      }
+      return response;
+    }).then(response=>{
+      response.json().then(json=>{
+        // Logica aqui
+        console.log(json);
+        this.top = [
+          {
+            tipo:'Productos con más ganancias',
+            campo:json.map(element=>{
+              return {
+                title:element.name,
+                subtitle:element.quantity
+              }
+            })
+          }
+        ];
+      })
+    }).catch(error=>{
+      console.log(error);
+    })
 
   }
 }

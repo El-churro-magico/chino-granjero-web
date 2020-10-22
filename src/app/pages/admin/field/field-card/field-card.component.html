@@ -50,6 +50,14 @@
     <div class="modal-body__campo"><span>Número sinpe</span>
       <input type="text" [(ngModel)]="this.card.sinpeN">
     </div>
+    <div class="productos"><span>Top 10 Productos más vendidos </span>
+      <div class="field-card" *ngFor="let producto of this.card.top">
+        <div class="field-card__text">
+          <div class="field-card__title"><span>{{producto.title}}</span></div>
+          <div class="field-card__subtitle"><span>{{producto.subtitle}}</span></div>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
     <button class="btn btn-outline-dark" type="button" (click)="modal.close('Submit')">Actualizar</button>

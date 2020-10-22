@@ -50,6 +50,14 @@ ng-template(let-modal '#informacionEditableP')
     .modal-body__campo
       span Número sinpe
       input(type='text' '[(ngModel)]'='this.card.sinpeN')
+    .productos
+      span Top 10 Productos más vendidos 
+      .field-card('*ngFor'='let producto of this.card.top')
+        .field-card__text
+          .field-card__title
+            span {{producto.title}}
+          .field-card__subtitle
+            span {{producto.subtitle}}
   .modal-footer
     button.btn.btn-outline-dark(type='button' '(click)'="modal.close('Submit')") Actualizar
   

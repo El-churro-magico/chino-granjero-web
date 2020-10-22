@@ -143,6 +143,33 @@ export class FieldCardComponent implements OnInit, OnChanges{
     let content;
     if(this.type=='productores'||this.type=='afiliacion'){
       content = informacionEditableP;
+      console.log('Trying to fetch');
+
+      fetch('http://25.83.43.98:1234'+'/api/Producer/getTops/TPP/'+this.id,{
+        method:'GET',
+        mode:'cors',
+        headers:{
+          'Content-Type':'application/json'
+        }
+      }).then(response=>{
+        if(!response.ok){
+          throw Error(response.statusText);
+        }
+        return response;
+      }).then(response=>{
+        response.json().then(json=>{
+          // Logica aqui
+          console.log(json);
+          this.card.top = json.map(element=>{
+            return {
+              title: element.name,
+              subtitle: element.quantity
+            }
+          })
+        })
+      }).catch(error=>{
+        console.log(error);
+      })
     }else if(this.type=='categorias'){
       content = informacionEditableC;
     }else if(this.type=='top'){

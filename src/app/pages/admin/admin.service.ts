@@ -61,21 +61,12 @@ export class AdminService{
     phoneN:number,
     birthDate:string,
     sinpeN:number,
-    imgUrl:string
-  }[]=[{
-    cedula: 111111111,
-    name:'Oscar',
-    lastName: 'de la Olla',
-    businessname: 'Emporio de la Olla',
-    province:'Alajuela',
-    canton: 'Central',
-    district: 'Alajuela',
-    address:'Por ay',
-    phoneN:88888888,
-    birthDate:'01/01/2000',
-    sinpeN:88888888,
-    imgUrl:'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fkeenthemes.com%2Fpreview%2Fmetronic%2Ftheme%2Fassets%2Fpages%2Fmedia%2Fprofile%2Fpeople19.png&f=1&nofb=1'
-  }];
+    imgUrl:string,
+    top:{
+      title:string,
+      subtitle: string
+    }[]
+  }[];
 
   constructor(){}
 
@@ -167,7 +158,7 @@ export class AdminService{
     this.top=[];
 
     // Fetch para los productos mas vendidos
-    fetch('http://25.83.43.98:1234'+'/api/Producer/getTops/SP',{
+    fetch('http://25.83.43.98:1234'+'/api/Producer/getTops/SP/1',{
       method:'GET',
       mode:'cors',
       headers:{
@@ -199,7 +190,7 @@ export class AdminService{
       console.log(error);
     })
 
-    fetch('http://25.83.43.98:1234'+'/api/Producer/getTops/CG',{
+    fetch('http://25.83.43.98:1234'+'/api/Producer/getTops/CG/1',{
       method:'GET',
       mode:'cors',
       headers:{
@@ -214,13 +205,44 @@ export class AdminService{
       response.json().then(json=>{
         // Logica aqui
         console.log(json);
-        this.top = [
+        this.top = [...this.top,
           {
             tipo:'Productos con más ganancias',
             campo:json.map(element=>{
               return {
                 title:element.name,
                 subtitle:element.quantity
+              }
+            })
+          }
+        ];
+      })
+    }).catch(error=>{
+      console.log(error);
+    })
+
+    fetch('http://25.83.43.98:1234'+'/api/Producer/getTops/TB/1',{
+      method:'GET',
+      mode:'cors',
+      headers:{
+        'Content-Type':'application/json'
+      }
+    }).then(response=>{
+      if(!response.ok){
+        throw Error(response.statusText);
+      }
+      return response;
+    }).then(response=>{
+      response.json().then(json=>{
+        // Logica aqui
+        console.log(json);
+        this.top = [...this.top,
+          {
+            tipo:'Clientes con más compras',
+            campo:json.map(element=>{
+              return {
+                title:element.name+' '+element.lastName,
+                subtitle:element.compras
               }
             })
           }

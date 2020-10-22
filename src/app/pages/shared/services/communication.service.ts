@@ -148,4 +148,39 @@ export class CommunicationService {
     this.location =null;
     this.token = null;
   }
+
+  fetchProductsByProducer() {
+    fetch('http://' + this.ipAddress + ':' + this.port + "/api/Product/fetchproductsByProducer/" + this.profile.cedula, {
+      method:'GET',
+      mode: 'cors',
+      headers:{
+        'Content-Type':'application/json'
+      }
+    }).then(response =>{// Maneja los errores
+      if(!response.ok) {
+        throw Error(response.statusText);
+      }
+        return response;
+      }).then((response)=>{
+        response.json().then(json=>{
+          // logica aqui
+          //console.log(json);
+          this.productos = json.map(element=>{
+            return {
+              id: element.id,
+              name: element.name,
+              category: element.category,
+              producer: element.producer,
+              image: element.image,
+              cost: element.cost,
+              saleMode: element.saleMode,
+              inStock: element.inStock,
+              quantity: element.quantity
+           };
+         })
+         json;
+         console.log(this.productos);
+       })
+    })
+  }
 }

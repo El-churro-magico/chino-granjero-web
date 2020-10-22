@@ -30,8 +30,6 @@ export class LoginComponent implements OnInit {
     this.activatedRoute.data.subscribe(data => {
       this.view = data.view;
     });
-    //this.fetchProducersByLocation();
-    //console.log(this.fetchProducersByLocation());
   }
 
   login() {
@@ -61,25 +59,12 @@ export class LoginComponent implements OnInit {
          });
       }).catch(async (error) => {
 
-        //console.log("Error")
-        // Agarran los errores
-          /*alert = await this.alertController.create({
-          header: 'Alert',
-          message:'Error: El usuario o contrasena proporcionado es incorrecto!',
-          buttons:['Ok']
-        })
-        await alert.present();*/
         console.log(error);
       })
     }
     else
     {
-      /*const alert= await this.alertController.create({
-        header: 'Campos faltantes!',
-        message: 'Por favor llene todos los campos correspondientes!',
-        buttons:['Ok']
-      });
-      await alert.present();*/
+
     }
   }
 

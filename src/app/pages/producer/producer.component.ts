@@ -81,6 +81,7 @@ export class ProducerComponent implements OnInit {
   constructor(private comService: CommunicationService) { }
 
   ngOnInit(): void {
+    this.comService.fetchProductsByProducer();
     this.extractProfile();
     this.extractProducts();
     this.categories = this.comService.categories;
@@ -128,6 +129,7 @@ export class ProducerComponent implements OnInit {
   }
 
   extractProducts() {
+    this.products = [];
     for(let i = 0; i < this.comService.productos.length; i++) {
       console.log(this.comService.productos[i].image);
       this.products.push({
@@ -195,9 +197,14 @@ export class ProducerComponent implements OnInit {
         this.showProductDetails($event);
         break;
       }
-      /*case 'producerDetails': {
+      case 'saveProduct': {
+        this.saveProduct($event)
         break;
-      }*/
+      }
+      case 'deleteProduct': {
+        this.deleteProduct($event)
+        break;
+      }
       case 'receipt': {
         this.showReceiptDetails($event);
         break;
@@ -214,6 +221,8 @@ export class ProducerComponent implements OnInit {
   }
 
   showProducts() {
+    this.comService.fetchProductsByProducer();
+    this.extractProducts();
     this.displayedCards = this.products;
   }
 
@@ -225,6 +234,62 @@ export class ProducerComponent implements OnInit {
     this.showSmokeScreenBool = true;
     this.currentProductDetails = undefined;
     this.showProductDetailsBool = true;
+  }
+
+  saveProduct(event: EventData) {
+    console.log('Deberia agregar esta kk YA YA');
+    event.attached.producer = this.comService.profile.cedula;
+    fetch('http://' + this.comService.ipAddress + ':' + this.comService.port + '/api/Product/'+ event.attached.productID,{   //Client Producer
+    method:'POST',
+    mode: 'cors',
+    body: JSON.stringify(event.attached),
+    headers:{
+      'Content-Type':'application/json'
+    }
+    }).then(response =>{// Maneja los errores
+      if(!response.ok){
+        throw Error(response.statusText);
+      }
+      return response;
+    }).then(async (response)=>{
+      response.json().then((json)=>{
+        // logica aqui
+
+      });
+    }).catch(async (error) => {
+
+      console.log(error);
+    })
+    this.hidePopUp();
+    this.comService.fetchProductsByProducer();
+    this.extractProducts();
+  }
+
+  deleteProduct(event: EventData) {
+    console.log('Deberia eliminar esta kk YA YA');
+    fetch('http://' + this.comService.ipAddress + ':' + this.comService.port + '/api/Product/'+ event.attached.productID,{   //Client Producer
+      method:'DELETE',
+      mode: 'cors',
+      headers:{
+        'Content-Type':'application/json'
+    }
+    }).then(response =>{// Maneja los errores
+      if(!response.ok){
+        throw Error(response.statusText);
+      }
+      return response;
+    }).then(async (response)=>{
+      response.json().then((json)=>{
+        // logica aqui
+
+      });
+    }).catch(async (error) => {
+
+      console.log(error);
+    })
+    this.hidePopUp();
+    this.comService.fetchProductsByProducer();
+    this.extractProducts();
   }
 
   showProductDetails(event: EventData) {

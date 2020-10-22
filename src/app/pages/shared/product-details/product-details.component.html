@@ -9,19 +9,23 @@
         <button *ngIf="!newProduct" class="imageButton">
             <img class="image" src="{{ imageURL }}">
         </button>
-        <button *ngIf="newProduct" class="imageButton">
-            <img class="image" src="../../../../assets/icons/add-product-picture.svg">
+        <input id="inputFile" type="file" accept="image/*" name="image" style="display: none;" (change)="onFileChanged($event)" #inputFile>
+        <button *ngIf="newProduct" class="imageButton" (click)="inputFile.click()">
+            <img class="image" src="{{ iconSource }}">
         </button>
-        <textarea class="textArea">{{ description }}</textarea>
+        <textarea class="textArea" [(ngModel)]="description">{{ description }}</textarea>
         <div class="horizontalContainer">
             <div *ngIf="newProduct" class="verticalContainer">
                 <selector
-                [elementList]="categories"
-                [placeHolder]="'Categoría'"
+                    [elementList]="categories"
+                    [placeHolder]="'Categoría'"
+                    (clickedEvent)="selectedCategory($event)"
                 ></selector>
                 <selector
-                [elementList]="units"
-                [placeHolder]="'Unidad'"></selector>
+                    [elementList]="units"
+                    [placeHolder]="'Unidad'"
+                    (clickedEvent)="selectedUnit($event)"
+                ></selector>
             </div>
             <div *ngIf="!newProduct" class="verticalContainer">
                 <selector
@@ -41,7 +45,7 @@
             <button class="saveButton" (click)="onActionClicked('saveProduct')">
                 Guardar
             </button>
-            <button class="deleteButton" (click)="onActionClicked('deleteProduct')">
+            <button *ngIf="!newProduct" class="deleteButton" (click)="onActionClicked('deleteProduct')">
                 Eliminar
             </button>
         </div>

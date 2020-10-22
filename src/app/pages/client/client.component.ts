@@ -35,6 +35,7 @@ export class ClientComponent implements OnInit {
   products: CardInterface[] = [];
   receipts: CardInterface[] = [];
   displayedCards: CardInterface[] = this.products;
+  view: string;
 
   // Product details
   productDetails: ProductDetails = {
@@ -98,21 +99,6 @@ export class ClientComponent implements OnInit {
         receiptData: null
       });
     }
-    this.products.push({
-      newProduct: true,
-      productID: "",
-      producerID: "",
-      orderID: "",
-      imageURL: "",
-      title: "",
-      rating: 0,
-      ETA: "",
-      description: "",
-      category: "",
-      unit: '',
-      availability: 0,
-      receiptData: null
-    });
     for (let i = 0; i<3; i++) {
       this.receipts.push({
         newProduct: false,
@@ -146,6 +132,8 @@ export class ClientComponent implements OnInit {
       name: this.comService.profile.name,
       surnames: this.comService.profile.lastName,
       identificationCard: this.comService.profile.cedula,
+      birthDate: this.comService.profile.birthDate,
+      phoneNumber: this.comService.profile.phoneN,
       province: this.comService.profile.province,
       canton: this.comService.profile.canton,
       district: this.comService.profile.district,

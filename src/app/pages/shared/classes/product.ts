@@ -1,8 +1,12 @@
   
 export class Product{
-    id: number;
-    name: String;
-    price: number;
-    quantity: number;
-    imgUrl: string;
-  }
+  id: number;
+  name: string;
+  category: number;
+  producer: number;
+  image: string;
+  cost: number;
+  saleMode: string;
+  inStock: number;
+  quantity: number;
+}

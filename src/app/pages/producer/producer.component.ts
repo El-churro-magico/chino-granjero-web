@@ -81,41 +81,10 @@ export class ProducerComponent implements OnInit {
   constructor(private comService: CommunicationService) { }
 
   ngOnInit(): void {
-    this.profileData = this.comService.profileData;
+    this.extractProfile();
+    this.extractProducts();
     this.categories = this.comService.categories;
     this.units = this.comService.units;
-    for (let i = 0; i<7; i++) {
-      this.products.push({
-        newProduct: false,
-        productID: "124234",
-        producerID: "",
-        orderID: "",
-        imageURL: "https://c4.wallpaperflare.com/wallpaper/391/313/294/nier-automata-2b-nier-fireworks-wallpaper-preview.jpg",
-        title: "This is the tittle",
-        rating: 3.1,
-        ETA: "15:00",
-        description: "This is de description",
-        category: "Cool category",
-        unit: 'kilograms',
-        availability: 80,
-        receiptData: null
-      });
-    }
-    this.products.push({
-      newProduct: true,
-      productID: "",
-      producerID: "",
-      orderID: "",
-      imageURL: "",
-      title: "",
-      rating: 0,
-      ETA: "",
-      description: "",
-      category: "",
-      unit: '',
-      availability: 0,
-      receiptData: null
-    });
     for (let i = 0; i<3; i++) {
       this.receipts.push({
         newProduct: false,
@@ -144,7 +113,7 @@ export class ProducerComponent implements OnInit {
 
   extractProfile() {
     this.profileData = {
-      imageURL: '',
+      imageURL: 'https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&q=70',
       role: 'Productor',
       name: this.comService.profile.name,
       surnames: this.comService.profile.lastName,
@@ -156,6 +125,46 @@ export class ProducerComponent implements OnInit {
       district: this.comService.profile.district,
       score: 5
     }
+  }
+
+  extractProducts() {
+    for(let i = 0; i < this.comService.productos.length; i++) {
+      console.log(this.comService.productos[i].image);
+      this.products.push({
+        newProduct: false,
+        productID: this.comService.productos[i].id.toString(),
+        producerID: this.comService.productos[i].producer.toString(),
+        orderID: '',
+        imageURL: this.comService.productos[i].image,
+        title: this.comService.productos[i].name,
+        rating: (Math.random() * (5-3) + 3),
+        ETA: '',
+        description: 'Optional description',
+        category: this.comService.productos[i].category.toString(),
+        unit: this.comService.productos[i].saleMode,
+        availability: this.comService.productos[i].inStock,
+        receiptData: null
+      })
+    }
+    this.products.push({
+      newProduct: true,
+      productID: "",
+      producerID: "",
+      orderID: "",
+      imageURL: "",
+      title: "",
+      rating: 0,
+      ETA: "",
+      description: "",
+      category: "",
+      unit: '',
+      availability: 0,
+      receiptData: null
+    });
+  }
+
+  extractReceipts() {
+
   }
 
   clickEvent($event: EventData) {

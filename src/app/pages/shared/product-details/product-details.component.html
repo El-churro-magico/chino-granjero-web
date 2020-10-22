@@ -37,9 +37,14 @@
                 <input type="number" class="numberInput" [(ngModel)]="availability">
             </div>
         </div>
-        <button class="saveButton">
-            Guardar
-        </button>
+        <div class="buttonsContainer">
+            <button class="saveButton" (click)="onActionClicked('saveProduct')">
+                Guardar
+            </button>
+            <button class="deleteButton" (click)="onActionClicked('deleteProduct')">
+                Eliminar
+            </button>
+        </div>
     </div>
 </mat-card>
 

@@ -30,17 +30,15 @@ export class LoginComponent implements OnInit {
     this.activatedRoute.data.subscribe(data => {
       this.view = data.view;
     });
-    this.fetchProducersByLocation();
+    //this.fetchProducersByLocation();
     //console.log(this.fetchProducersByLocation());
   }
 
   login() {
     if(this.validate(this.userID, this.password)) {
       //var alert;
-      console.log(this.userID+"\n"+this.password);
-
       let data= {password:this.password}
-
+      //console.log('http://' + this.comService.ipAddress + ':' + this.comService.port + '/api/SignIn/'+ this.view.toLocaleLowerCase() +'/' + this.userID);
       fetch('http://' + this.comService.ipAddress + ':' + this.comService.port + '/api/SignIn/'+ this.view.toLocaleLowerCase() +'/' + this.userID,{   //Client Producer
         method:'POST',
         mode: 'cors',
@@ -56,14 +54,14 @@ export class LoginComponent implements OnInit {
       }).then(async (response)=>{
          response.json().then((json)=>{
            // logica aqui
-           console.log(json);
+           //console.log(json);
            this.comService.token = json;
-           console.log(this.comService.token);
+           //console.log(this.comService.token);
            this.fetchProfile();
          });
       }).catch(async (error) => {
 
-        console.log("Contrase")
+        //console.log("Error")
         // Agarran los errores
           /*alert = await this.alertController.create({
           header: 'Alert',
@@ -85,11 +83,19 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  async fetchProfile() {
-    var alert;
-    let data={token:this.comService.token};
-    console.log(this.comService.token);
-    fetch('http://' + this.comService.ipAddress + ':' + this.comService.port + '/api/Client/getUserByUserName/' + this.userID,{
+  fetchProfile() {
+    //console.log('Estoy en Fetch Profile');
+    let data = {token:this.comService.token};
+    //console.log(this.comService.token);
+    console.log(this.userID);
+    let endPoint: string = '';
+    if(this.view === 'Cliente') {
+      endPoint = 'http://' + this.comService.ipAddress + ':' + this.comService.port + '/api/Client/getUserByUserName/' + this.userID;
+    }
+    else if(this.view === 'Productor') {
+      endPoint = 'http://' + this.comService.ipAddress + ':' + this.comService.port + '/api/Producer/getUserByUserName/' + this.userID;
+    }
+    fetch(endPoint ,{
       method: 'POST',
       mode: 'cors',
       body:JSON.stringify(data),
@@ -102,23 +108,28 @@ export class LoginComponent implements OnInit {
       }
       return response;
     }).then((response)=>{
-      console.log(response);
+      //console.log(response);
        response.json().then(json=>{
          console.log(json);
          // logica aqui
          this.comService.profile = json;
-         this.fetchProducersByLocation();
-         this.comService.location = this.comService.locationNumber(this.comService.profile.province,this.comService.profile.canton,this.comService.profile.district)
+         console.log('Esta deberia ser la cedula');
+         console.log(this.comService.profile.cedula);
+         if(this.view === 'Cliente') {
+          this.fetchProducersByLocation();
+         }
+         else if(this.view === 'Productor') {
+           console.log('Estamos en fetch products');
+          this.fetchProductsByProducer();
+         }
+         this.comService.location = this.comService.locationNumber(this.comService.profile.province,this.comService.profile.canton,this.comService.profile.district);
          this.userID = '';
          this.password = '';
-         this.router.navigateByUrl('/pages/producer/home');
        })
     })
   }
 
-  async fetchProducersByLocation() {
-    var alert;
-
+   fetchProducersByLocation() {
     fetch('http://' + this.comService.ipAddress + ':' + this.comService.port + "/api/Producer/getProducerByLocation/" + this.comService.profile.province + "/" + this.comService.profile.canton + "/" + this.comService.profile.district,{
       method:'GET',
       mode: 'cors',
@@ -133,7 +144,7 @@ export class LoginComponent implements OnInit {
     }).then((response)=>{
        response.json().then(json=>{
          // logica aqui
-         console.log(json);
+         //console.log(json);
          this.comService.productores = json.map(element=>{
            return {
              name: element.businessName,
@@ -156,7 +167,44 @@ export class LoginComponent implements OnInit {
            };
          })
          json;
-         console.log(this.comService.productores);
+         //console.log(this.comService.productores);
+       })
+    })
+  }
+
+  fetchProductsByProducer() {
+    //console.log('http://' + this.comService.ipAddress + ':' + this.comService.port + "/api/Product/fetchproductsByProducer/" + this.comService.profile.cedula);
+    fetch('http://' + this.comService.ipAddress + ':' + this.comService.port + "/api/Product/fetchproductsByProducer/" + this.comService.profile.cedula, {
+      method:'GET',
+      mode: 'cors',
+      headers:{
+        'Content-Type':'application/json'
+      }
+    }).then(response =>{// Maneja los errores
+      if(!response.ok) {
+        throw Error(response.statusText);
+      }
+        return response;
+      }).then((response)=>{
+        response.json().then(json=>{
+          // logica aqui
+          //console.log(json);
+          this.comService.productos = json.map(element=>{
+            return {
+              id: element.id,
+              name: element.name,
+              category: element.category,
+              producer: element.producer,
+              image: element.image,
+              cost: element.cost,
+              saleMode: element.saleMode,
+              inStock: element.inStock,
+              quantity: element.quantity
+           };
+         })
+         json;
+         console.log(this.comService.productos);
+         this.navigateToHome();
        })
     })
   }
@@ -166,11 +214,17 @@ export class LoginComponent implements OnInit {
       return true;
     }
     else {
-      console.log("Error, debe ingresar un correo y contraseña validos");
+      console.log("Error, debe ingresar una credencial y contraseña validas");
     }
   }
 
-  navigateTo() {
-    this.router.navigateByUrl('/pages/producer/home');
+  navigateToHome() {
+    if(this.view === 'Productor'){
+      this.router.navigateByUrl('/pages/producer/home');
+    }
+    else if(this.view === 'Cliente'){
+      this.router.navigateByUrl('/pages/client/home');
+    }
+    
   }
 }

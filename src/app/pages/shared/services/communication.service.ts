@@ -42,6 +42,8 @@ export class CommunicationService {
 
   productores: Producer[];
 
+  productos: Product[];
+
   cart: {
     product:Product,
     quantity:number

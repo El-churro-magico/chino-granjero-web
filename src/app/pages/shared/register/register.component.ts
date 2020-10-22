@@ -5,6 +5,7 @@ import { CrPcdService } from 'cr-pcd';
 import { ActivatedRoute } from '@angular/router';
 
 import { SelectorData } from '../SelectorData';
+import { Profile } from '../classes/profile';
 
 @Component({
   selector: 'register',
@@ -12,6 +13,7 @@ import { SelectorData } from '../SelectorData';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  newProfile: Profile = null;
   view: string = "";
   accepted: boolean = true;
   iconSource: any = "../../../../assets/icons/add-profile-picture.svg";
@@ -115,6 +117,34 @@ export class RegisterComponent implements OnInit {
     this.validateBirthDate();
     this.validatePhone();
     if(this.accepted === true){
+      this.newProfile = {
+        /*cedula: Number(this.identification),
+        name: this.name,
+        lastName: this.lastNames,
+        province: this.province,
+        canton: this.canton,
+        district: this.district,
+        address: '',
+        phoneN: Number(this.phoneNumber),
+        userName: Number(this.identification),
+        birthDate: this.birthDate.toDateString(),
+        notifications: null*/
+        address: '',
+        birthDate: this.birthDate.toDateString(),
+        businessName: '',
+        calification: 5,
+        canton: this.canton,
+        cedula: Number(this.identification),
+        deliveryPlaces: '',
+        district: this.district,
+        image: '',
+        lastName: this.lastNames,
+        name: this.name,
+        phoneN: Number(this.phoneNumber),
+        products: [],
+        province: this.province,
+        sinpeN: Number(this.phoneNumber),
+      }
       console.log("Ha sido aceptado");
       return true;
     }

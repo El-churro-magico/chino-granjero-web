@@ -9,5 +9,5 @@ export interface ProfileData {
     province: string,
     canton: string,
     district: string,
-    score: number
+    score: number,    
 }

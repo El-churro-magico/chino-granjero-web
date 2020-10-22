@@ -25,6 +25,14 @@
             <h2 class="tag">{{ profileData.identificationCard }}</h2>
         </div>
         <div class="textLine">
+            <h2 class="tag">Numero (SINPE): </h2>
+            <h2 class="tag">{{ profileData.phoneNumber }}</h2>
+        </div>
+        <div class="textLine">
+            <h2 class="tag">Fecha nacimiento: </h2>
+            <h2 class="tag">{{ profileData.birthDate }}</h2>
+        </div>
+        <div class="textLine">
             <h2 class="tag">Provincia: </h2>
             <h2 class="tag">{{ profileData.province }}</h2>
         </div>
@@ -67,6 +75,14 @@
         <div class="textLine">
             <h2 class="tag">Cédula: </h2>
             <input type="text" class="input clickable" [(ngModel)]="profileData.identificationCard">
+        </div>
+        <div class="textLine">
+            <h2 class="tag">Numero (SINPE): </h2>
+            <input type="text" class="input clickable" [(ngModel)]="profileData.phoneNumber">
+        </div>
+        <div class="textLine">
+            <h2 class="tag">Fecha nacimiento: </h2>
+            <input type="text" class="input clickable" [(ngModel)]="profileData.birthDate">
         </div>
         <div class="textLine">
             <selector

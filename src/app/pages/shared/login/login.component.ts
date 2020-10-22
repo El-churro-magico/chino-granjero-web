@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
     if(this.validate(this.userID, this.password)) {
       //var alert;
       let data= {password:this.password}
-      //console.log('http://' + this.comService.ipAddress + ':' + this.comService.port + '/api/SignIn/'+ this.view.toLocaleLowerCase() +'/' + this.userID);
       fetch('http://' + this.comService.ipAddress + ':' + this.comService.port + '/api/SignIn/'+ this.view.toLocaleLowerCase() +'/' + this.userID,{   //Client Producer
         method:'POST',
         mode: 'cors',
@@ -52,9 +51,7 @@ export class LoginComponent implements OnInit {
       }).then(async (response)=>{
          response.json().then((json)=>{
            // logica aqui
-           //console.log(json);
            this.comService.token = json;
-           //console.log(this.comService.token);
            this.fetchProfile();
          });
       }).catch(async (error) => {
@@ -69,10 +66,7 @@ export class LoginComponent implements OnInit {
   }
 
   fetchProfile() {
-    //console.log('Estoy en Fetch Profile');
     let data = {token:this.comService.token};
-    //console.log(this.comService.token);
-    console.log(this.userID);
     let endPoint: string = '';
     if(this.view === 'Cliente') {
       endPoint = 'http://' + this.comService.ipAddress + ':' + this.comService.port + '/api/Client/getUserByUserName/' + this.userID;
@@ -93,18 +87,13 @@ export class LoginComponent implements OnInit {
       }
       return response;
     }).then((response)=>{
-      //console.log(response);
        response.json().then(json=>{
-         console.log(json);
          // logica aqui
          this.comService.profile = json;
-         console.log('Esta deberia ser la cedula');
-         console.log(this.comService.profile.cedula);
          if(this.view === 'Cliente') {
           this.fetchProducersByLocation();
          }
          else if(this.view === 'Productor') {
-           console.log('Estamos en fetch products');
           this.fetchProductsByProducer();
          }
          this.comService.location = this.comService.locationNumber(this.comService.profile.province,this.comService.profile.canton,this.comService.profile.district);
@@ -128,8 +117,6 @@ export class LoginComponent implements OnInit {
       return response;
     }).then((response)=>{
        response.json().then(json=>{
-         // logica aqui
-         //console.log(json);
          this.comService.productores = json.map(element=>{
            return {
              name: element.businessName,
@@ -152,13 +139,11 @@ export class LoginComponent implements OnInit {
            };
          })
          json;
-         //console.log(this.comService.productores);
        })
     })
   }
 
   fetchProductsByProducer() {
-    //console.log('http://' + this.comService.ipAddress + ':' + this.comService.port + "/api/Product/fetchproductsByProducer/" + this.comService.profile.cedula);
     fetch('http://' + this.comService.ipAddress + ':' + this.comService.port + "/api/Product/fetchproductsByProducer/" + this.comService.profile.cedula, {
       method:'GET',
       mode: 'cors',
@@ -173,7 +158,6 @@ export class LoginComponent implements OnInit {
       }).then((response)=>{
         response.json().then(json=>{
           // logica aqui
-          //console.log(json);
           this.comService.productos = json.map(element=>{
             return {
               id: element.id,
@@ -188,7 +172,6 @@ export class LoginComponent implements OnInit {
            };
          })
          json;
-         console.log(this.comService.productos);
          this.navigateToHome();
        })
     })

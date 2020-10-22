@@ -131,7 +131,6 @@ export class ProducerComponent implements OnInit {
   extractProducts() {
     this.products = [];
     for(let i = 0; i < this.comService.productos.length; i++) {
-      console.log(this.comService.productos[i].image);
       this.products.push({
         newProduct: false,
         productID: this.comService.productos[i].id.toString(),
@@ -170,8 +169,6 @@ export class ProducerComponent implements OnInit {
   }
 
   clickEvent($event: EventData) {
-    console.log($event.eventID);
-    console.log($event.attached);
     switch ($event.eventID) {
       // Header Events
       case 'headerProfile': {
@@ -237,7 +234,6 @@ export class ProducerComponent implements OnInit {
   }
 
   saveProduct(event: EventData) {
-    console.log('Deberia agregar esta kk YA YA');
     event.attached.producer = this.comService.profile.cedula;
     fetch('http://' + this.comService.ipAddress + ':' + this.comService.port + '/api/Product/'+ event.attached.productID,{   //Client Producer
     method:'POST',
@@ -266,7 +262,6 @@ export class ProducerComponent implements OnInit {
   }
 
   deleteProduct(event: EventData) {
-    console.log('Deberia eliminar esta kk YA YA');
     fetch('http://' + this.comService.ipAddress + ':' + this.comService.port + '/api/Product/'+ event.attached.productID,{   //Client Producer
       method:'DELETE',
       mode: 'cors',
@@ -300,7 +295,6 @@ export class ProducerComponent implements OnInit {
 
   showReceiptDetails(event: EventData) {
     this.showSmokeScreenBool = true;
-    console.log(event.attached);
     this.currentReceiptDetails = event.attached;
     this.showReceiptDetailsBool = true;
   }
